@@ -124,11 +124,14 @@
             box-shadow: 0 5px 20px rgba(16, 42, 67, 0.08);
             border: 1px solid #e5edf5;
             transition: transform 0.25s, box-shadow 0.25s;
+            cursor: pointer;
         }
 
-        .sport-card:hover {
+        .sport-card:hover,
+        .sport-card:focus-visible {
             transform: translateY(-6px);
             box-shadow: 0 12px 28px rgba(16, 42, 67, 0.14);
+            outline: 2px solid #19a6b8;
         }
 
         .sport-icon {
@@ -160,6 +163,14 @@
             margin-top: 15px;
         }
 
+        .click-hint {
+            display: block;
+            margin-top: 14px;
+            color: #087e8b;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
         .note {
             text-align: center;
             margin-top: 35px;
@@ -167,6 +178,184 @@
             background: #e8f7fa;
             color: #24576a;
             border-radius: 10px;
+            line-height: 1.6;
+        }
+
+        /* Team popup */
+
+        .team-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(8, 24, 40, 0.72);
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-modal.active {
+            display: flex;
+        }
+
+        .team-modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 18px;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 50%;
+            background: #eaf1f7;
+            color: #102a43;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            background: #d5e6f2;
+        }
+
+        .team-modal-icon {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .team-modal-content h2 {
+            color: #102a43;
+            text-align: center;
+            margin-bottom: 8px;
+            padding-right: 25px;
+            padding-left: 25px;
+        }
+
+        .team-description {
+            color: #64748b;
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .gender-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            background: #f8fafc;
+            color: #102a43;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .gender-btn.active {
+            background: #102a43;
+            color: white;
+            border-color: #102a43;
+        }
+
+        .roster-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 13px;
+        }
+
+        .roster-heading h3 {
+            color: #102a43;
+            font-size: 18px;
+        }
+
+        .player-count {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .player-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .player-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px;
+            border-radius: 10px;
+            background: #f4f7fb;
+            border: 1px solid #e5edf5;
+            font-size: 14px;
+            color: #243b53;
+        }
+
+        .player-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #dcecf5;
+            color: #102a43;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .player-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .captain-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 27px;
+            height: 27px;
+            padding: 0 7px;
+            border-radius: 50%;
+            background: #f5c542;
+            color: #503800;
+            font-size: 12px;
+            font-weight: bold;
+            border: 1px solid #e0aa16;
+        }
+
+        .captain-label {
+            font-size: 11px;
+            color: #9a7100;
+            font-weight: bold;
+        }
+
+        .demo-note {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #fff8df;
+            color: #765a0a;
+            font-size: 12px;
             line-height: 1.6;
         }
 
@@ -201,6 +390,10 @@
 
             .sports-section {
                 padding: 35px 5%;
+            }
+
+            .team-modal-content {
+                padding: 23px 18px;
             }
         }
     </style>
@@ -240,143 +433,58 @@
             <p>One college. Many sports. One spirit.</p>
         </div>
 
-        <div class="sports-grid">
-
-            <div class="sport-card">
-                <div class="sport-icon">🏐</div>
-                <h3>Volleyball</h3>
-                <p>Discover our volleyball teams and their sporting journey.</p>
-                <span class="team-type">Men & Women</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🤾</div>
-                <h3>Handball</h3>
-                <p>Meet the athletes who bring teamwork and energy to the court.</p>
-                <span class="team-type">Men & Women</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏏</div>
-                <h3>Cricket</h3>
-                <p>Explore our cricket team and its college-level participation.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">⚽</div>
-                <h3>Football</h3>
-                <p>Discover the players who compete with skill and determination.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏃</div>
-                <h3>Athletics</h3>
-                <p>Explore track and field events and individual athlete profiles.</p>
-                <span class="team-type">Individual Events</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏸</div>
-                <h3>Badminton</h3>
-                <p>Discover our badminton players and their sporting categories.</p>
-                <span class="team-type">Singles & Doubles</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🥋</div>
-                <h3>Taekwondo</h3>
-                <p>Meet athletes who develop discipline, speed and technique.</p>
-                <span class="team-type">Individual Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🥊</div>
-                <h3>Boxing</h3>
-                <p>Explore our boxing athletes and their competition categories.</p>
-                <span class="team-type">Individual Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏋️</div>
-                <h3>Weightlifting</h3>
-                <p>Discover athletes competing across different weight categories.</p>
-                <span class="team-type">Individual Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">💪</div>
-                <h3>Powerlifting</h3>
-                <p>Explore strength athletes and their competition records.</p>
-                <span class="team-type">Individual Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏀</div>
-                <h3>Basketball</h3>
-                <p>Discover our basketball players and team participation.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🥅</div>
-                <h3>Kabaddi</h3>
-                <p>Explore the team that combines strength, strategy and speed.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏃‍♂️</div>
-                <h3>Kho-Kho</h3>
-                <p>Meet the players who compete with agility and teamwork.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏓</div>
-                <h3>Table Tennis</h3>
-                <p>Discover our table tennis players and competition categories.</p>
-                <span class="team-type">Singles & Doubles</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">♟️</div>
-                <h3>Chess</h3>
-                <p>Explore the players who compete through strategy and planning.</p>
-                <span class="team-type">Individual Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🏸</div>
-                <h3>Ball Badminton</h3>
-                <p>Discover our ball badminton players and team participation.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">⚾</div>
-                <h3>Baseball</h3>
-                <p>Explore baseball team information and tournament participation.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-            <div class="sport-card">
-                <div class="sport-icon">🥎</div>
-                <h3>Softball</h3>
-                <p>Discover softball team details and college sports activities.</p>
-                <span class="team-type">Team Sport</span>
-            </div>
-
-        </div>
+        <div class="sports-grid" id="sportsGrid"></div>
 
         <div class="note">
-            <strong>Coming Next:</strong> Player profiles, team members,
-            sport categories and South Zone participation records will be
-            added as verified information becomes available.
+            <strong>Note:</strong> Team lists currently contain demo names.
+            Verified player details can be added later.
         </div>
 
     </section>
+
+    <!-- Team roster popup -->
+
+    <div class="team-modal" id="teamModal" role="dialog"
+         aria-modal="true" aria-labelledby="modalSportName">
+
+        <div class="team-modal-content">
+
+            <button class="close-modal" id="closeModal"
+                    aria-label="Close team list">&times;</button>
+
+            <div class="team-modal-icon" id="modalSportIcon">🏐</div>
+
+            <h2 id="modalSportName">Volleyball</h2>
+
+            <p class="team-description">
+                Select a team to view its players.
+            </p>
+
+            <div class="gender-options">
+                <button class="gender-btn active" data-gender="men">
+                    Men's Team
+                </button>
+
+                <button class="gender-btn" data-gender="women">
+                    Women's Team
+                </button>
+            </div>
+
+            <div class="roster-heading">
+                <h3 id="rosterTitle">Men's Team</h3>
+                <span class="player-count" id="playerCount"></span>
+            </div>
+
+            <ul class="player-list" id="playerList"></ul>
+
+            <div class="demo-note">
+                <strong>Demo data:</strong> These names are placeholders,
+                not verified BEC player records. The gold C badge identifies
+                the sample captain.
+            </div>
+
+        </div>
+    </div>
 
     <footer>
         <p><strong>BECVerse</strong> — Where Passion Meets Victory.</p>
@@ -384,5 +492,345 @@
         <p>&copy; 2026 BECVerse. All rights reserved.</p>
     </footer>
 
+    <script>
+        /*
+         * Demo roster data.
+         * Each team has a captain first, followed by other players.
+         * Replace these sample names with verified player names later.
+         */
+
+        const sports = [
+            {
+                name: "Volleyball",
+                icon: "🏐",
+                description: "Discover our volleyball teams and their sporting journey."
+            },
+            {
+                name: "Handball",
+                icon: "🤾",
+                description: "Meet the athletes who bring teamwork and energy to the court."
+            },
+            {
+                name: "Cricket",
+                icon: "🏏",
+                description: "Explore our cricket team and its college-level participation."
+            },
+            {
+                name: "Football",
+                icon: "⚽",
+                description: "Discover the players who compete with skill and determination."
+            },
+            {
+                name: "Athletics",
+                icon: "🏃",
+                description: "Explore track and field events and individual athlete profiles."
+            },
+            {
+                name: "Badminton",
+                icon: "🏸",
+                description: "Discover our badminton players and their sporting categories."
+            },
+            {
+                name: "Taekwondo",
+                icon: "🥋",
+                description: "Meet athletes who develop discipline, speed and technique."
+            },
+            {
+                name: "Boxing",
+                icon: "🥊",
+                description: "Explore our boxing athletes and their competition categories."
+            },
+            {
+                name: "Weightlifting",
+                icon: "🏋️",
+                description: "Discover athletes competing across different weight categories."
+            },
+            {
+                name: "Powerlifting",
+                icon: "💪",
+                description: "Explore strength athletes and their competition records."
+            },
+            {
+                name: "Basketball",
+                icon: "🏀",
+                description: "Discover our basketball players and team participation."
+            },
+            {
+                name: "Kabaddi",
+                icon: "🥅",
+                description: "Explore the team that combines strength, strategy and speed."
+            },
+            {
+                name: "Kho-Kho",
+                icon: "🏃‍♂️",
+                description: "Meet the players who compete with agility and teamwork."
+            },
+            {
+                name: "Table Tennis",
+                icon: "🏓",
+                description: "Discover our table tennis players and competition categories."
+            },
+            {
+                name: "Chess",
+                icon: "♟️",
+                description: "Explore the players who compete through strategy and planning."
+            },
+            {
+                name: "Ball Badminton",
+                icon: "🏸",
+                description: "Discover our ball badminton players and team participation."
+            },
+            {
+                name: "Baseball",
+                icon: "⚾",
+                description: "Explore baseball team information and tournament participation."
+            },
+            {
+                name: "Softball",
+                icon: "🥎",
+                description: "Discover softball team details and college sports activities."
+            }
+        ];
+
+        const sampleNames = [
+            "Aarav Kumar",
+            "Sai Kiran",
+            "Rahul Teja",
+            "Karthik Reddy",
+            "Vamsi Krishna",
+            "Nikhil Varma",
+            "Arjun Rao",
+            "Sanjay Kumar",
+            "Charan Teja",
+            "Rohit Naidu",
+            "Praveen Kumar",
+            "Abhinav Reddy"
+        ];
+
+        const sampleWomenNames = [
+            "Ananya Reddy",
+            "Meghana Rao",
+            "Sravya Kumar",
+            "Harika Teja",
+            "Divya Sri",
+            "Keerthana Reddy",
+            "Sowmya Rao",
+            "Mounika Devi",
+            "Lakshmi Priya",
+            "Navya Sri",
+            "Bhavana Reddy",
+            "Sahithi Rao"
+        ];
+
+        /*
+         * Generate a demo roster for every sport.
+         * These are placeholders, not real student records.
+         */
+
+        const teamData = {};
+
+        sports.forEach((sport, index) => {
+            const menNames = [...sampleNames];
+            const womenNames = [...sampleWomenNames];
+
+            const menCaptain = menNames.splice(index % menNames.length, 1)[0];
+            const womenCaptain = womenNames.splice(
+                index % womenNames.length, 1
+            )[0];
+
+            teamData[sport.name] = {
+                men: [menCaptain, ...menNames],
+                women: [womenCaptain, ...womenNames]
+            };
+        });
+
+        const sportsGrid = document.getElementById("sportsGrid");
+        const teamModal = document.getElementById("teamModal");
+        const closeModal = document.getElementById("closeModal");
+        const modalSportIcon = document.getElementById("modalSportIcon");
+        const modalSportName = document.getElementById("modalSportName");
+        const rosterTitle = document.getElementById("rosterTitle");
+        const playerCount = document.getElementById("playerCount");
+        const playerList = document.getElementById("playerList");
+        const genderButtons = document.querySelectorAll(".gender-btn");
+
+        let selectedSport = "";
+        let selectedGender = "men";
+        let previousFocus = null;
+
+        function getTeamType(name) {
+            const individualSports = [
+                "Athletics",
+                "Taekwondo",
+                "Boxing",
+                "Weightlifting",
+                "Powerlifting",
+                "Chess"
+            ];
+
+            const racketSports = ["Badminton", "Table Tennis"];
+
+            if (individualSports.includes(name)) {
+                return "Individual Sport";
+            }
+
+            if (racketSports.includes(name)) {
+                return "Singles & Doubles";
+            }
+
+            return "Men & Women";
+        }
+
+        function createSportCards() {
+            sports.forEach(sport => {
+                const card = document.createElement("div");
+
+                card.className = "sport-card";
+                card.tabIndex = 0;
+                card.setAttribute("role", "button");
+                card.setAttribute(
+                    "aria-label",
+                    "View " + sport.name + " teams"
+                );
+
+                card.innerHTML = `
+                    <div class="sport-icon">${sport.icon}</div>
+                    <h3>${sport.name}</h3>
+                    <p>${sport.description}</p>
+                    <span class="team-type">${getTeamType(sport.name)}</span>
+                    <span class="click-hint">View team members →</span>
+                `;
+
+                card.addEventListener("click", () => {
+                    openTeam(sport.name);
+                });
+
+                card.addEventListener("keydown", event => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        openTeam(sport.name);
+                    }
+                });
+
+                sportsGrid.appendChild(card);
+            });
+        }
+
+       function openTeam(sportName) {
+    selectedSport = sportName;
+    selectedGender = "men";
+
+    previousFocus = document.activeElement;
+
+    const sport = sports.find(item => item.name === sportName);
+
+    if (!sport || !teamData[sportName]) {
+        alert("Team details not found!");
+        return;
+    }
+
+    modalSportIcon.textContent = sport.icon;
+    modalSportName.textContent = sport.name;
+
+    genderButtons.forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.gender === "men"
+        );
+    });
+
+    renderPlayers();
+
+    teamModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    closeModal.focus();
+}
+
+function renderPlayers() {
+    const names = teamData[selectedSport][selectedGender];
+
+    rosterTitle.textContent =
+        selectedGender === "men" ? "Men's Team" : "Women's Team";
+
+    playerCount.textContent = names.length + " players";
+    playerList.innerHTML = "";
+
+    names.forEach((name, index) => {
+        const li = document.createElement("li");
+
+        const number = document.createElement("span");
+        number.className = "player-number";
+        number.textContent = String(index + 1).padStart(2, "0");
+
+        const playerName = document.createElement("span");
+        playerName.className = "player-name";
+        playerName.textContent = name;
+
+        li.appendChild(number);
+        li.appendChild(playerName);
+
+        if (index === 0) {
+            const badge = document.createElement("span");
+            badge.className = "captain-badge";
+            badge.textContent = "C";
+            badge.title = "Captain";
+
+            const label = document.createElement("span");
+            label.className = "captain-label";
+            label.textContent = "Captain";
+
+            li.appendChild(badge);
+            li.appendChild(label);
+        }
+
+        playerList.appendChild(li);
+    });
+}
+
+genderButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        selectedGender = button.dataset.gender;
+
+        genderButtons.forEach(item => {
+            item.classList.toggle("active", item === button);
+        });
+
+        renderPlayers();
+    });
+});
+
+function closeTeam() {
+    teamModal.classList.remove("active");
+    document.body.style.overflow = "";
+
+    if (previousFocus) {
+        previousFocus.focus();
+    }
+}
+
+closeModal.addEventListener("click", closeTeam);
+
+teamModal.addEventListener("click", event => {
+    if (event.target === teamModal) {
+        closeTeam();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (
+        event.key === "Escape" &&
+        teamModal.classList.contains("active")
+    ) {
+        closeTeam();
+    }
+});
+
+try {
+    createSportCards();
+    console.log("Sports cards created:", sportsGrid.children.length);
+} catch (error) {
+    console.error("BECVerse error:", error);
+}
+</script>
 </body>
 </html>

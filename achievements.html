@@ -1,434 +1,913 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Achievements | BECVerse</title>
+<title>Achievements | BECVerse</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #243447;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #243447;
+}
 
-        /* HEADER */
+body.modal-open {
+    overflow: hidden;
+}
 
-        header {
-            background: #102a43;
-            color: white;
-            padding: 20px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+header {
+    background: #102a43;
+    color: white;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
 
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-        }
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .logo span {
-            color: #35d6e8;
-        }
+.logo span {
+    color: #35d6e8;
+}
 
-        .tagline {
-            font-size: 12px;
-            margin-top: 5px;
-            color: #cbd5e1;
-        }
+.tagline {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #cbd5e1;
+}
 
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-        nav a:hover {
-            color: #35d6e8;
-        }
+nav a:hover {
+    color: #35d6e8;
+}
 
-        /* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, #102a43, #167d9d);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
 
-        .hero {
-            background: linear-gradient(135deg, #102a43, #167d9d);
-            color: white;
-            text-align: center;
-            padding: 65px 20px;
-        }
+.hero-label {
+    display: inline-block;
+    border: 1px solid #35d6e8;
+    color: #35d6e8;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
-        .hero-label {
-            display: inline-block;
-            border: 1px solid #35d6e8;
-            color: #35d6e8;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
 
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
+.hero h1 span {
+    color: #35d6e8;
+}
 
-        .hero h1 span {
-            color: #35d6e8;
-        }
+.hero p {
+    font-size: 16px;
+    line-height: 1.8;
+}
 
-        .hero p {
-            font-size: 16px;
-            line-height: 1.8;
-        }
+.section {
+    padding: 55px 7%;
+}
 
-        /* SECTION */
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
 
-        .section {
-            padding: 55px 7%;
-        }
+.section-title h2 {
+    font-size: 30px;
+    color: #102a43;
+    margin-bottom: 10px;
+}
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+.section-title p {
+    color: #64748b;
+    line-height: 1.6;
+}
 
-        .section-title h2 {
-            font-size: 30px;
-            color: #102a43;
-            margin-bottom: 10px;
-        }
+.achievement-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
 
-        .section-title p {
-            color: #64748b;
-            line-height: 1.6;
-        }
+.achievement-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(16, 42, 67, 0.08);
+    border-top: 4px solid #35bcd0;
+    transition: 0.3s;
+}
 
-        /* ACHIEVEMENT CARDS */
+.achievement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(16, 42, 67, 0.13);
+}
 
-        .achievement-container {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
+.achievement-icon {
+    font-size: 38px;
+    margin-bottom: 18px;
+}
 
-        .achievement-card {
-            background: white;
-            padding: 30px 25px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(16, 42, 67, 0.08);
-            border-top: 4px solid #35bcd0;
-            transition: 0.3s;
-        }
+.achievement-card h3 {
+    color: #102a43;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
 
-        .achievement-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 12px 25px rgba(16, 42, 67, 0.13);
-        }
+.achievement-card p {
+    color: #64748b;
+    line-height: 1.7;
+    font-size: 14px;
+}
 
-        .achievement-icon {
-            font-size: 38px;
-            margin-bottom: 18px;
-        }
+.badge {
+    display: inline-block;
+    background: #e0f7fa;
+    color: #087e8b;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 18px;
+}
 
-        .achievement-card h3 {
-            color: #102a43;
-            font-size: 21px;
-            margin-bottom: 12px;
-        }
+.action-button {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 22px;
+    background: #102a43;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .achievement-card p {
-            color: #64748b;
-            line-height: 1.7;
-            font-size: 14px;
-        }
+.action-button:hover {
+    background: #167d9d;
+}
 
-        .badge {
-            display: inline-block;
-            background: #e0f7fa;
-            color: #087e8b;
-            padding: 7px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 18px;
-        }
+.empty-message {
+    text-align: center;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    color: #64748b;
+    line-height: 1.8;
+    grid-column: 1 / -1;
+}
 
-        /* VICTORY ALERT */
+/* VICTORY ALERT */
 
-        .victory-section {
-            padding: 10px 7% 55px;
-        }
+.victory-section {
+    padding: 10px 7% 55px;
+}
 
-        .victory-box {
-            background: linear-gradient(135deg, #102a43, #167d9d);
-            color: white;
-            padding: 35px;
-            text-align: center;
-            border-radius: 18px;
-        }
+.victory-box {
+    background: linear-gradient(135deg, #102a43, #167d9d);
+    color: white;
+    padding: 35px;
+    text-align: center;
+    border-radius: 18px;
+}
 
-        .victory-box h2 {
-            font-size: 27px;
-            margin-bottom: 15px;
-        }
+.victory-box h2 {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
 
-        .victory-box p {
-            line-height: 1.8;
-            color: #e0f2fe;
-        }
+.victory-box p {
+    line-height: 1.8;
+    color: #e0f2fe;
+}
 
-        .victory-label {
-            display: inline-block;
-            background: #35d6e8;
-            color: #102a43;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
+/* MODAL */
 
-        /* FOOTER */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10, 30, 50, 0.7);
+    padding: 18px;
+    align-items: center;
+    justify-content: center;
+}
 
-        footer {
-            background: #102a43;
-            color: #cbd5e1;
-            text-align: center;
-            padding: 22px;
-            font-size: 13px;
-        }
+.modal-overlay.active {
+    display: flex;
+}
 
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
+.modal-box {
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+}
 
-            nav {
-                justify-content: center;
-                gap: 14px;
-            }
+.modal-box h2 {
+    color: #102a43;
+    margin-bottom: 8px;
+}
 
-            .hero h1 {
-                font-size: 32px;
-            }
+.modal-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
 
-            .section {
-                padding: 40px 6%;
-            }
-        }
-    </style>
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: none;
+    background: #e0f7fa;
+    color: #102a43;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+    cursor: pointer;
+}
 
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #e0f7fa;
+    color: #102a43;
+}
+
+tr:hover td {
+    background: #f8fbfd;
+}
+
+.rank {
+    font-weight: bold;
+    color: #087e8b;
+}
+
+.modal-empty {
+    padding: 20px;
+    background: #f4f7fb;
+    border-radius: 12px;
+    color: #64748b;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.victory-popup {
+    text-align: center;
+    max-width: 420px;
+}
+
+.victory-trophy {
+    font-size: 55px;
+    margin-bottom: 12px;
+}
+
+.victory-popup h2 {
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.victory-popup p {
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+footer {
+    background: #102a43;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 22px;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .section {
+        padding: 40px 6%;
+    }
+
+    .victory-box {
+        padding: 25px 18px;
+    }
+
+    .modal-box {
+        padding: 25px 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<header>
+    <div>
+        <div class="logo">BEC<span>Verse</span></div>
+        <div class="tagline">Where Passion Meets Victory.</div>
+    </div>
 
-    <header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tournaments.html">Tournaments</a>
+        <a href="teams.html">Our Teams</a>
+        <a href="southzone.html">South Zone</a>
+        <a href="achievements.html">Achievements</a>
+    </nav>
+</header>
 
-        <div>
-            <div class="logo">BEC<span>Verse</span></div>
-            <div class="tagline">Where Passion Meets Victory.</div>
-        </div>
+<section class="hero">
+    <div class="hero-label">CELEBRATING BEC EXCELLENCE</div>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="tournaments.html">Tournaments</a>
-            <a href="teams.html">Our Teams</a>
-            <a href="south-zone.html">South Zone</a>
-            <a href="achievements.html">Achievements</a>
-        </nav>
+    <h1>Our <span>Achievements</span></h1>
 
-    </header>
+    <p>
+        Every victory tells a story. Every achievement inspires
+        another dream.<br>
+        Celebrating the dedication and sporting spirit of
+        Bapatla Engineering College.
+    </p>
+</section>
 
-
-    <!-- HERO SECTION -->
-
-    <section class="hero">
-
-        <div class="hero-label">
-            CELEBRATING BEC EXCELLENCE
-        </div>
-
-        <h1>Our <span>Achievements</span></h1>
-
+<section class="section">
+    <div class="section-title">
+        <h2>Celebrating Our Victories</h2>
         <p>
-            Every victory tells a story. Every achievement inspires
-            another dream.<br>
-            Celebrating the dedication and sporting spirit of
-            Bapatla Engineering College.
+            Discover our verified sports achievements,
+            South Zone participants and outstanding players.
         </p>
+    </div>
 
-    </section>
+    <div class="achievement-container" id="achievementContainer">
 
+        <!-- Achievement cards are generated from verified data. -->
 
-    <!-- ACHIEVEMENTS SECTION -->
-
-    <section class="section">
-
-        <div class="section-title">
-            <h2>Celebrating Our Victories</h2>
-
+        <div class="achievement-card">
+            <div class="achievement-icon">🤾</div>
+            <h3>South Zone Participation</h3>
             <p>
-                A proud collection of BEC sports achievements
-                and memorable performances.
+                Explore the students who represented BEC at
+                South Zone inter-university competitions.
             </p>
+            <button class="action-button" onclick="showParticipants()">
+                View Participants
+            </button>
         </div>
 
-
-        <div class="achievement-container">
-
-
-            <!-- ACHIEVEMENT 1 -->
-
-            <div class="achievement-card">
-
-                <div class="achievement-icon">🏆</div>
-
-                <h3>Volleyball Achievement</h3>
-
-                <p>
-                    Celebrating the dedication, teamwork and
-                    determination of our BEC volleyball athletes.
-                </p>
-
-                <button class="badge"
-        onclick="showAchievement('Volleyball Achievement')">
-    Team Achievement
-</button>
-
-            </div>
-
-
-            <!-- ACHIEVEMENT 2 -->
-
-            <div class="achievement-card">
-
-                <div class="achievement-icon">🤾</div>
-
-                <h3>Handball Achievement</h3>
-
-                <p>
-                    Recognising the spirit, discipline and
-                    hard work of our college handball teams.
-                </p>
-
-                <span class="badge">Team Achievement</span>
-
-            </div>
-
-
-            <!-- ACHIEVEMENT 3 -->
-
-            <div class="achievement-card">
-
-                <div class="achievement-icon">🥇</div>
-
-                <h3>South Zone Participation</h3>
-
-                <p>
-                    Honouring BEC athletes who represent our
-                    college at South Zone inter-university events.
-                </p>
-
-                <span class="badge">Sports Recognition</span>
-
-            </div>
-
-
-            <!-- ACHIEVEMENT 4 -->
-
-            <div class="achievement-card">
-
-                <div class="achievement-icon">⭐</div>
-
-                <h3>Individual Excellence</h3>
-
-                <p>
-                    Celebrating outstanding performances,
-                    commitment and individual sporting talent.
-                </p>
-
-                <span class="badge">Athlete Recognition</span>
-
-            </div>
-
-
+        <div class="achievement-card">
+            <div class="achievement-icon">⭐</div>
+            <h3>Best Players</h3>
+            <p>
+                Discover players ranked by their recorded
+                South Zone participation count.
+            </p>
+            <button class="action-button" onclick="showBestPlayers()">
+                View Rankings
+            </button>
         </div>
 
-    </section>
+    </div>
+</section>
 
-
-    <!-- VICTORY ALERT SECTION -->
-
-    <section class="victory-section">
-
-        <div class="victory-box">
-
-            <div class="victory-label">
-                BECVERSE SPECIAL FEATURE
-            </div>
-
-            <h2>🔔 Victory Alert</h2>
-
-            <p>
-                Every victory deserves to be celebrated!
-                Stay updated with the latest tournament results
-                and achievements of BEC sports teams.
-            </p>
-
-            <p>
-                New achievements will be announced here
-                once the Sports Department updates the results.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            © 2026 BECVerse | Bapatla Engineering College
+<section class="victory-section">
+    <div class="victory-box">
+        <h2>🔔 Victory Alert</h2>
+        <p id="victoryMessage">
+            Every victory deserves to be celebrated!
+            Verified achievements will appear here when
+            competition results are added.
         </p>
+    </div>
+</section>
 
-        <p style="margin-top: 8px;">
-            Where Passion Meets Victory.
-        </p>
+<footer>
+    <p>© 2026 BECVerse | Bapatla Engineering College</p>
+    <p style="margin-top: 8px;">Where Passion Meets Victory.</p>
+</footer>
 
-    </footer>
+<!-- DETAILS MODAL -->
+
+<div class="modal-overlay" id="detailsModal"
+     role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+     onclick="closeOnBackdrop(event)">
+
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()"
+                aria-label="Close">&times;</button>
+
+        <h2 id="modalTitle">Details</h2>
+        <p class="modal-subtitle" id="modalSubtitle"></p>
+
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<!-- WINNING POPUP -->
+
+<div class="modal-overlay" id="winningPopup"
+     role="dialog" aria-modal="true" aria-labelledby="winningTitle"
+     onclick="closeWinningOnBackdrop(event)">
+
+    <div class="modal-box victory-popup">
+        <button class="modal-close" onclick="closeWinningPopup()"
+                aria-label="Close">&times;</button>
+
+        <div class="victory-trophy">🏆</div>
+        <h2 id="winningTitle">Congratulations, BEC!</h2>
+        <p id="winningMessage"></p>
+
+        <button class="action-button" onclick="closeWinningPopup()">
+            Celebrate!
+        </button>
+    </div>
+</div>
+
 <script>
-function showAchievement(name) {
-    alert(
-        name +
-        "\n\nBEC Sports Team Achievement" +
-        "\n\nOfficial results will be updated by the Sports Department."
-    );
-}
-</script>
-</body>
+/*
+  BECVerse ACHIEVEMENT DATA
 
+  Add only verified competition results here.
+
+  position must be 1, 2 or 3.
+  Use the actual competition date in YYYY-MM-DD format.
+*/
+
+
+;const achievements = [ {
+        id: "volleyball-2026",
+        team: "Volleyball Team",
+        sport: "Volleyball",
+        competition: "South Zone Inter-University Tournament",
+        position: 1,
+        year: "2026"
+    },
+    ];
+    localStorage.setItem(
+    "becVerseAchievements",
+    JSON.stringify(achievements)
+);
+
+const participants = [
+    {
+        name: "MEGHANA PAKANATI",
+        regNo: "Y24AEC559",
+        academicYear: "3rd Year",
+        sport: "Volleyball",
+        participationYear: "2026"
+    },
+    {
+        name: "K.SRUJANI",
+        regNo: "Y24AEC559",
+        academicYear: "3RD Year",
+        sport: "Handball",
+        participationYear: "2026"
+    }
+];
+
+/* DISPLAY VERIFIED 1ST, 2ND AND 3RD PLACE ACHIEVEMENTS */
+
+function renderAchievements() {
+    const container = document.getElementById("achievementContainer");
+
+    const podiumAchievements = achievements.filter(item =>
+        [1, 2, 3].includes(Number(item.position)) &&
+        item.sport &&
+        item.competition &&
+        item.date
+    );
+
+    const medals = {
+        1: "🥇",
+        2: "🥈",
+        3: "🥉"
+    };
+
+    const placeNames = {
+        1: "1st Place",
+        2: "2nd Place",
+        3: "3rd Place"
+    };
+
+    const cards = podiumAchievements.map(item => {
+        const card = document.createElement("div");
+        card.className = "achievement-card";
+
+        const icon = document.createElement("div");
+        icon.className = "achievement-icon";
+        icon.textContent = medals[item.position];
+
+        const title = document.createElement("h3");
+        title.textContent = item.sport + " Achievement";
+
+        const description = document.createElement("p");
+        description.textContent =
+            item.competition + " — " + placeNames[item.position] +
+            (item.year ? " (" + item.year + ")" : "");
+
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = placeNames[item.position];
+
+        card.append(icon, title, description, badge);
+        return card;
+    });
+
+    /*
+      Keep participation and player ranking cards visible,
+      even when no podium achievements have been recorded.
+    */
+
+    container.replaceChildren(...cards);
+
+    const participationCard = createInfoCard(
+        "🤾",
+        "South Zone Participation",
+        "Explore students who represented BEC at South Zone events.",
+        "View Participants",
+        showParticipants
+    );
+
+    const playersCard = createInfoCard(
+        "⭐",
+        "Best Players",
+        "Rank players by their recorded South Zone participation count.",
+        "View Rankings",
+        showBestPlayers
+    );
+
+    container.append(participationCard, playersCard);
+
+    const latest = getLatestAchievement();
+
+    document.getElementById("victoryMessage").textContent =
+        latest
+            ? latest.sport + " secured " +
+              placeNames[latest.position] + " in " +
+              latest.competition + ". Congratulations to the team!"
+            : "Every victory deserves to be celebrated! " +
+              "Verified achievements will appear here when " +
+              "competition results are added.";
+}
+
+function createInfoCard(iconText, titleText, descriptionText,
+                        buttonText, callback) {
+    const card = document.createElement("div");
+    card.className = "achievement-card";
+
+    const icon = document.createElement("div");
+    icon.className = "achievement-icon";
+    icon.textContent = iconText;
+
+    const title = document.createElement("h3");
+    title.textContent = titleText;
+
+    const description = document.createElement("p");
+    description.textContent = descriptionText;
+
+    const button = document.createElement("button");
+    button.className = "action-button";
+    button.textContent = buttonText;
+    button.addEventListener("click", callback);
+
+    card.append(icon, title, description, button);
+    return card;
+}
+
+
+/* SOUTH ZONE PARTICIPANTS */
+
+function showParticipants() {
+    document.getElementById("modalTitle").textContent =
+        "South Zone Participants";
+
+    document.getElementById("modalSubtitle").textContent =
+        "Current and previous academic years";
+
+    const content = document.getElementById("modalContent");
+
+    if (participants.length === 0) {
+        content.innerHTML = `
+            <div class="modal-empty">
+                <strong>No participant records added yet.</strong><br><br>
+                Verified participant details will appear here,
+                including student name, registration number,
+                academic year, sport and participation history.
+            </div>
+        `;
+    } else {
+        const sorted = [...participants].sort((a, b) =>
+            (b.academicYear || "").localeCompare(a.academicYear || "")
+        );
+
+        const table = document.createElement("table");
+
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Registration No.</th>
+                    <th>Academic Year</th>
+                    <th>Sport</th>
+                    <th>Participation Years</th>
+                </tr>
+            </thead>
+        `;
+
+        const tbody = document.createElement("tbody");
+
+        sorted.forEach(student => {
+            const row = document.createElement("tr");
+
+            [
+                student.name,
+                student.registrationNumber,
+                student.academicYear,
+                student.sport,
+                (student.participationYears || []).join(", ")
+            ].forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value || "Not provided";
+                row.appendChild(cell);
+            });
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "table-wrapper";
+        wrapper.appendChild(table);
+
+        content.replaceChildren(wrapper);
+    }
+
+    openModal();
+}
+
+
+/* BEST PLAYERS: RANK BY SOUTH ZONE PARTICIPATION COUNT */
+
+function showBestPlayers() {
+    document.getElementById("modalTitle").textContent = "Best Players";
+
+    document.getElementById("modalSubtitle").textContent =
+        "Ranked by the number of recorded South Zone participation years.";
+
+    const content = document.getElementById("modalContent");
+
+    const ranked = participants
+        .map(student => ({
+            ...student,
+            participationCount: new Set(
+                student.participationYears || []
+            ).size
+        }))
+        .sort((a, b) =>
+            b.participationCount - a.participationCount ||
+            (a.name || "").localeCompare(b.name || "")
+        );
+
+    if (ranked.length === 0) {
+        content.innerHTML = `
+            <div class="modal-empty">
+                <strong>No player records added yet.</strong><br><br>
+                Once verified South Zone participant records
+                are added, this section will rank players by
+                their recorded participation count.
+            </div>
+        `;
+    } else {
+        const table = document.createElement("table");
+
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Sport</th>
+                    <th>Participation Count</th>
+                </tr>
+            </thead>
+        `;
+
+        const tbody = document.createElement("tbody");
+
+        ranked.forEach((student, index) => {
+            const row = document.createElement("tr");
+
+            const values = [
+                "#" + (index + 1),
+                student.name || "Not provided",
+                student.sport || "Not provided",
+                student.participationCount
+            ];
+
+            values.forEach((value, columnIndex) => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+
+                if (columnIndex === 0) {
+                    cell.className = "rank";
+                }
+
+                row.appendChild(cell);
+            });
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "table-wrapper";
+        wrapper.appendChild(table);
+
+        content.replaceChildren(wrapper);
+    }
+
+    openModal();
+}
+
+
+/* MODAL CONTROLS */
+
+function openModal() {
+    document.getElementById("detailsModal").classList.add("active");
+    document.body.classList.add("modal-open");
+}
+
+function closeModal() {
+    document.getElementById("detailsModal").classList.remove("active");
+    unlockBodyIfNoModal();
+}
+
+function closeOnBackdrop(event) {
+    if (event.target.id === "detailsModal") {
+        closeModal();
+    }
+}
+
+function unlockBodyIfNoModal() {
+    const detailsOpen =
+        document.getElementById("detailsModal").classList.contains("active");
+
+    const winningOpen =
+        document.getElementById("winningPopup").classList.contains("active");
+
+    if (!detailsOpen && !winningOpen) {
+        document.body.classList.remove("modal-open");
+    }
+}
+
+
+/* LATEST VERIFIED PODIUM ACHIEVEMENT */
+
+function getLatestAchievement() {
+    const verified = achievements.filter(item =>
+        [1, 2, 3].includes(Number(item.position)) &&
+        item.sport &&
+        item.competition &&
+        item.date &&
+        !Number.isNaN(Date.parse(item.date))
+    );
+
+    verified.sort((a, b) =>
+        Date.parse(b.date) - Date.parse(a.date)
+    );
+
+    return verified[0] || null;
+}
+
+function showWinningPopup() {
+    const latest = getLatestAchievement();
+
+    if (!latest) return;
+
+    /*
+      Show the popup only once per achievement date and competition
+      in this browser. This is a local demo, not shared storage.
+    */
+
+    const popupKey =
+        "becverse-victory-" +
+        latest.sport + "-" +
+        latest.competition + "-" +
+        latest.date;
+
+    try {
+        if (localStorage.getItem(popupKey)) return;
+        localStorage.setItem(popupKey, "shown");
+    } catch (error) {
+        /* Continue even if browser storage is unavailable. */
+    }
+
+    const placeNames = {
+        1: "1st Place",
+        2: "2nd Place",
+        3: "3rd Place"
+    };
+
+    document.getElementById("winningTitle").textContent =
+        "Congratulations, BEC!";
+
+    document.getElementById("winningMessage").textContent =`${latestAchievement.team} team secured ${
+            positionText[latestAchievement.position]
+        } in ${latestAchievement.competition}!`;
+
+    document.getElementById("winningPopup").classList.add("show");
+
+    const closeWinningPopup = () => {
+        document.getElementById("winningPopup").classList.remove("show");
+
+        localStorage.setItem(
+            "becVerseLastVictory",
+            latestAchievement.id
+        );
+    };
+
+    document.getElementById("closeWinningPopup")
+        .addEventListener("click", closeWinningPopup);
+
+    document.getElementById("winningPopup")
+        .addEventListener("click", function (event) {
+            if (event.target === this) {
+                closeWinningPopup();
+            }
+        });
+}
+;
+</script>
+
+</body>
 </html>
