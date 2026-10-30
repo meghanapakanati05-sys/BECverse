@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BECVerse | Trial Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            color: #102a43;
+        }
+
+        header {
+            background: #071b35;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            color: #38bdf8;
+            font-size: 26px;
+        }
+
+        header p {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 45px 15px 25px;
+            background: linear-gradient(135deg, #071b35, #124e78);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: 35px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #0c4a6e;
+        }
+
+        .description {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #0284c7;
+            box-shadow: 0 0 4px #7dd3fc;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #0369a1;
+        }
+
+        .notice {
+            background: #eff6ff;
+            border-left: 4px solid #0284c7;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            background: #071b35;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px 10px 0 0;
+            }
+
+            .form-container {
+                margin: 20px 15px;
+                padding: 22px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h2>BECVerse</h2>
+        <p>Where Passion Meets Victory</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tournaments.html">Tournaments</a>
+        <a href="teams.html">Our Teams</a>
+        <a href="southzone.html">South Zone</a>
+        <a href="achievements.html">Achievements</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Student Trial Registration</h1>
+    <p>Show your talent. Represent Bapatla Engineering College.</p>
+</section>
+
+<div class="form-container">
+
+    <h2>Register for Sports Trials</h2>
+
+    <p class="description">
+        Fill in your details to register your interest in sports trials.
+    </p>
+
+    <form id="registrationForm">
+
+        <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+                minlength="3"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="regNo">Registration Number *</label>
+            <input
+                type="text"
+                id="regNo"
+                placeholder="Enter your college registration number"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="branch">Branch *</label>
+            <select id="branch" required>
+                <option value="">Select your branch</option>
+                <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                <option value="CSE">Computer Science and Engineering (CSE)</option>
+                <option value="EEE">Electrical and Electronics Engineering (EEE)</option>
+                <option value="MECH">Mechanical Engineering</option>
+                <option value="CIVIL">Civil Engineering</option>
+                <option value="IT">Information Technology (IT)</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="academicYear">Academic Year *</label>
+            <select id="academicYear" required>
+                <option value="">Select your academic year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sport">Sport Name *</label>
+            <select id="sport" required>
+                <option value="">Select your sport</option>
+                <option>Volleyball</option>
+                <option>Handball</option>
+                <option>Cricket</option>
+                <option>Kabaddi</option>
+                <option>Kho-Kho</option>
+                <option>Basketball</option>
+                <option>Football</option>
+                <option>Badminton</option>
+                <option>Athletics</option>
+                <option>Table Tennis</option>
+                <option>Chess</option>
+                <option>Ball Badminton</option>
+                <option>Weightlifting</option>
+                <option>Powerlifting</option>
+                <option>Boxing</option>
+                <option>Taekwondo</option>
+                <option>Baseball</option>
+                <option>Softball</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="contact">Contact Number *</label>
+            <input
+                type="tel"
+                id="contact"
+                placeholder="Enter 10-digit mobile number"
+                pattern="[6-9][0-9]{9}"
+                maxlength="10"
+                inputmode="numeric"
+                required
+            >
+        </div>
+
+        <button type="submit">Submit Registration</button>
+
+        <div class="notice">
+            <strong>Privacy Notice:</strong> Registration details should be
+            accessible only to authorized Sports Department administrators.
+            This demo form does not yet save data to a secure database.
+        </div>
+
+    </form>
+</div>
+
+<footer>
+    <p>© 2026 BECVerse | Bapatla Engineering College</p>
+    <p>Where Passion Meets Victory</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "https://cjjerfxrxtpwwflytwdq.supabase.co/rest/v1/";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_lGeIenjxoxaw8_MSbcKGcg_chxphwwt";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+    document.getElementById("registrationForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const registrationNumber = document.getElementById("regNo").value.trim();
+        const branch = document.getElementById("branch").value;
+        const academicYear = document.getElementById("academicYear").value;
+        const sportName = document.getElementById("sport").value;
+        const contactNumber = document.getElementById("contact").value.trim();
+
+        if (!/^[6-9][0-9]{9}$/.test(contactNumber)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+        }
+
+        const { error } = await supabaseClient
+            .from("trial_registrations")
+            .insert([{
+                full_name: fullName,
+                registration_number: registrationNumber,
+                branch: branch,
+                academic_year: academicYear,
+                sport_name: sportName,
+                contact_number: contactNumber
+            }]);
+
+        if (error) {
+            console.error("Registration error:", error);
+            alert("Registration could not be saved. Please try again.");
+            return;
+        }
+
+        alert("Registration submitted successfully!");
+        document.getElementById("registrationForm").reset();
+    });
+</script>
+</script>
+
+</body>
+</html>

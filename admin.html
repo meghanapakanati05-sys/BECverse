@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BECVerse | Admin Dashboard</title><style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f1f5f9;
+        color: #1e293b;
+    }
+
+    header {
+        background: #0f172a;
+        color: white;
+        padding: 22px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    header h1 {
+        font-size: 27px;
+    }
+
+    header span {
+        color: #2dd4bf;
+    }
+
+    header p {
+        color: #cbd5e1;
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+    .back-btn {
+        text-decoration: none;
+        background: #2dd4bf;
+        color: #0f172a;
+        padding: 11px 18px;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 86%;
+        max-width: 1200px;
+        margin: 35px auto;
+    }
+
+    .welcome {
+        margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .welcome p {
+        color: #64748b;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px #0000000a;
+        border: 1px solid #e2e8f0;
+    }
+
+    .icon {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: #64748b;
+        font-size: 15px;
+        font-weight: normal;
+    }
+
+    .number {
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #0f172a;
+    }
+
+    .section {
+        background: white;
+        margin-top: 30px;
+        padding: 25px;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .section h2 {
+        margin-bottom: 20px;
+    }
+
+    .actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .action-btn {
+        display: block;
+        padding: 20px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #0f172a;
+        font-weight: bold;
+        background: #f8fafc;
+        transition: 0.2s;
+    }
+
+    .action-btn:hover {
+        background: #ccfbf1;
+        transform: translateY(-3px);
+    }
+
+    .action-btn p {
+        font-weight: normal;
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 8px;
+    }
+
+    .notice {
+        margin-top: 25px;
+        padding: 18px;
+        background: #ccfbf1;
+        border-left: 5px solid #0d9488;
+        border-radius: 8px;
+        line-height: 1.6;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #e2e8f0;
+        text-align: left;
+    }
+
+    thead {
+        background: #f1f5f9;
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px;
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+        .stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .actions {
+            grid-template-columns: 1fr;
+        }
+
+        .container {
+            width: 92%;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        header h1 {
+            font-size: 23px;
+        }
+    }
+</style>
+
+</head><body><header>
+    <div>
+        <h1>BEC<span>Verse</span></h1>
+        <p>Sports Department · Admin Dashboard</p>
+    </div><a href="index.html" class="back-btn">← Back to Home</a>
+
+</header><main class="container"><div class="welcome">
+    <h2>Welcome, Sports Admin! 👋</h2>
+    <p>Manage college sports activities from one place.</p>
+</div>
+
+<div class="stats">
+
+    <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Tournaments</h3>
+        <div class="number">08</div>
+    </div>
+
+    <div class="card">
+        <div class="icon">🏐</div>
+        <h3>Sports Teams</h3>
+        <div class="number">06</div>
+    </div>
+
+    <div class="card">
+        <div class="icon">🥇</div>
+        <h3>Achievements</h3>
+        <div class="number">12</div>
+    </div>
+
+    <div class="card">
+        <div class="icon">📝</div>
+        <h3>Trial Registrations</h3>
+        <div class="number">--</div>
+    </div>
+
+</div>
+
+<section class="section">
+    <h2>🏆 Tournament Details</h2>
+
+    <p id="tournamentMessage" aria-live="polite">
+        Loading tournaments...
+    </p>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tournament</th>
+                    <th>Sport</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Status</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+
+            <tbody id="tournamentRows"></tbody>
+        </table>
+    </div>
+</section>
+
+<section class="section">
+    <h2>⚡ Quick Actions</h2>
+
+    <div class="actions">
+
+        <a href="tournaments.html" class="action-btn">
+            🏆 View Tournaments
+            <p>Check college tournament details.</p>
+        </a>
+
+        <a href="teams.html" class="action-btn">
+            🏐 View Sports Teams
+            <p>Explore the sports played at BEC.</p>
+        </a>
+
+        <a href="southzone.html" class="action-btn">
+            🎖️ South Zone Participants
+            <p>View South Zone participant details.</p>
+        </a>
+
+        <a href="achievements.html" class="action-btn">
+            🥇 View Achievements
+            <p>Explore college sports achievements.</p>
+        </a>
+
+        <a href="registration.html" class="action-btn">
+            📝 Trial Registration Form
+            <p>Open the student registration form.</p>
+        </a>
+
+        <a href="index.html" class="action-btn">
+            🏠 Homepage
+            <p>Return to the BECVerse homepage.</p>
+        </a>
+
+    </div>
+
+    <div class="notice">
+        <strong>📌 Admin Note</strong><br>
+        This dashboard currently displays sample statistics.
+        Live registration counts and administrative editing
+        will be connected in a later step.
+    </div>
+</section>
+
+</main><footer>
+    © 2026 BECVerse | Bapatla Engineering College
+    <br><br>
+    Where Passion Meets Victory.
+</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./supabase.js"></script><script>
+async function loadTournaments() {
+    const message = document.getElementById("tournamentMessage");
+    const rows = document.getElementById("tournamentRows");
+
+    try {
+        const { data, error } = await supabaseClient
+            .from("tournaments")
+            .select("tournament_name, sport_name, tournament_date, venue, status, winner")
+            .order("tournament_date", { ascending: true });
+
+        if (error) {
+            throw error;
+        }
+
+        rows.replaceChildren();
+
+        if (!data || data.length === 0) {
+            message.textContent = "No tournaments added yet.";
+            return;
+        }
+
+        message.textContent = "";
+
+        data.forEach(tournament => {
+            const row = document.createElement("tr");
+
+            [
+                tournament.tournament_name,
+                tournament.sport_name,
+                tournament.tournament_date || "TBA",
+                tournament.venue || "TBA",
+                tournament.status || "Upcoming",
+                tournament.winner || "TBA"
+            ].forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            rows.appendChild(row);
+        });
+
+     } catch (error) {
+    console.error("Tournament loading error:", error);
+
+    message.textContent =
+        "Error: " + (error.message || JSON.stringify(error));
+}
+}
+loadTournaments();
+</script></body>
+</html>

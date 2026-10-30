@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BECVerse | Different Teams, Same Dream</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --plum: #49345F;
+    --plum-light: #705786;
+    --pink: #FCE8EF;
+    --lavender: #EEE7FA;
+    --mint: #E2F3EA;
+    --blue: #E4F0FC;
+    --peach: #FFF0E3;
+    --text: #443A50;
+    --muted: #766C80;
+    --white: #FFFFFF;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFFBFE;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+body.popup-open {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* HEADER */
+
+header {
+    background: var(--plum);
+    color: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: white;
+    line-height: 1.2;
+}
+
+.logo span {
+    color: #F8CFE0;
+}
+
+.tagline {
+    font-size: 12px;
+    color: #E5D9EF;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: #F8CFE0;
+}
+
+.login-link {
+    padding: 8px 20px;
+    border: 1px solid #E8CDEB;
+    border-radius: 25px;
+}
+
+.login-link:hover {
+    background: #FFFFFF;
+    color: var(--plum);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    min-height: 450px;
+    padding: 48px 6%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    background: linear-gradient(
+        120deg,
+        #FCE8EF 0%,
+        #EEE7FA 55%,
+        #E4F0FC 100%
+    );
+}
+
+.hero-content {
+    width: 45%;
+    position: relative;
+    z-index: 2;
+    animation: slideIn .8s ease both;
+}
+
+.hero-label {
+    display: inline-block;
+    background: #FFFFFF;
+    border: 1px solid #E8CFEF;
+    color: var(--plum);
+    padding: 7px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+    color: var(--plum);
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    color: #B66D9A;
+}
+
+.hero-subtitle {
+    font-size: clamp(25px, 3vw, 36px);
+    font-weight: bold;
+    line-height: 1.25;
+    margin-bottom: 13px;
+    color: var(--plum);
+}
+
+.hero-subtitle span {
+    color: #956CB6;
+}
+
+.motto {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 18px;
+    color: var(--plum);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.motto .separator {
+    color: #B66D9A;
+}
+
+.hero-description {
+    max-width: 480px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .25s;
+}
+
+.button-primary {
+    background: var(--plum);
+    color: white;
+    border: 1px solid var(--plum);
+}
+
+.button-secondary {
+    color: var(--plum);
+    border: 1px solid #BDA8CE;
+    background: rgba(255,255,255,.8);
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(73,52,95,.14);
+}
+
+/* SPORTS GROUND ILLUSTRATION */
+
+.hero-visual {
+    width: 55%;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    animation: fadeIn 1s ease both;
+}
+
+.ground-art {
+    width: 100%;
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+}
+
+.ground-art svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.visual-note {
+    position: absolute;
+    right: 1%;
+    top: 2%;
+    padding: 10px 14px;
+    background: rgba(255,255,255,.95);
+    border: 1px solid #E6D9EF;
+    border-radius: 15px;
+    box-shadow: 0 7px 20px rgba(73,52,95,.09);
+    color: var(--muted);
+    font-size: 11px;
+    z-index: 2;
+}
+
+.visual-note strong {
+    display: block;
+    color: var(--plum);
+    font-size: 14px;
+}
+
+/* SPORTS SECTION */
+
+.section {
+    padding: 55px 6%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    font-size: 30px;
+    color: var(--plum);
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.heading-line {
+    width: 55px;
+    height: 4px;
+    border-radius: 5px;
+    background: #C58EB9;
+    margin: 14px auto 0;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    padding: 23px;
+    border-radius: 18px;
+    border: 1px solid #E9DCEC;
+    background: #FFFFFF;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #C99CC7;
+}
+
+.card:nth-child(1) {
+    background: #FFF7FA;
+}
+
+.card:nth-child(1)::before {
+    background: #E6A4C0;
+}
+
+.card:nth-child(2) {
+    background: #F8F4FF;
+}
+
+.card:nth-child(2)::before {
+    background: #B7A0D9;
+}
+
+.card:nth-child(3) {
+    background: #F2F8FF;
+}
+
+.card:nth-child(3)::before {
+    background: #91BCE8;
+}
+
+.card:nth-child(4) {
+    background: #F1FAF5;
+}
+
+.card:nth-child(4)::before {
+    background: #8CC8A5;
+}
+
+.card:nth-child(5) {
+    background: #FFF7ED;
+}
+
+.card:nth-child(5)::before {
+    background: #E7B17D;
+}
+
+.card:nth-child(6) {
+    background: #F8F4FF;
+}
+
+.card:nth-child(6)::before {
+    background: #B7A0D9;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(73,52,95,.10);
+}
+
+.card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 12px;
+    background: #FCE1EC;
+}
+
+.card:nth-child(2) .card-icon {
+    background: #E8DDF8;
+}
+
+.card:nth-child(3) .card-icon {
+    background: #DCEBFB;
+}
+
+.card:nth-child(4) .card-icon {
+    background: #DDF1E4;
+}
+
+.card:nth-child(5) .card-icon {
+    background: #FFE8D2;
+}
+
+.card:nth-child(6) .card-icon {
+    background: #E8DDF8;
+}
+
+.card h3 {
+    font-size: 19px;
+    color: var(--plum);
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.card a {
+    display: inline-block;
+    font-size: 13px;
+    color: #79528F;
+    font-weight: bold;
+}
+
+.card a:hover {
+    color: #B45F8C;
+}
+
+/* COLLEGE SECTION */
+
+.college-section {
+    padding: 43px 7%;
+    text-align: center;
+    background: linear-gradient(
+        120deg,
+        #EEE7FA,
+        #FCE8EF,
+        #E2F3EA
+    );
+}
+
+.college-section h2 {
+    font-size: clamp(23px, 3vw, 31px);
+    color: var(--plum);
+    margin-bottom: 10px;
+}
+
+.college-section p {
+    max-width: 760px;
+    margin: auto;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+/* QUICK LINKS */
+
+.quick-links {
+    padding: 38px 6%;
+    text-align: center;
+    background: #FFFBFE;
+}
+
+.quick-links h2 {
+    font-size: 25px;
+    color: var(--plum);
+    margin-bottom: 8px;
+}
+
+.quick-links p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.quick-links .button {
+    margin: 5px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    background: var(--plum);
+    color: #F4EDF9;
+    padding: 27px 15px;
+}
+
+footer h3 {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 4px;
+}
+
+footer h3 span {
+    color: #F5C9DF;
+}
+
+footer p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #E5D9EF;
+}
+
+.footer-motto {
+    margin-top: 7px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #F5C9DF;
+}
+
+/* WELCOME POPUP */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(47, 34, 58, .52);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+    z-index: 1000;
+    animation: fadeIn .3s ease;
+}
+
+.popup {
+    width: 100%;
+    max-width: 390px;
+    position: relative;
+    text-align: center;
+    padding: 29px 26px 26px;
+    border: 1px solid #EBC6D9;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #FFF5F9, #FCE8EF 65%, #F0E7FA);
+    box-shadow: 0 18px 50px rgba(47,34,58,.22);
+    animation: popupIn .4s ease both;
+}
+
+.popup-close {
+    position: absolute;
+    top: 9px;
+    right: 13px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.7);
+    color: var(--plum);
+    font-size: 25px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.popup-close:hover {
+    background: white;
+    transform: rotate(90deg);
+}
+
+.popup-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #F4CFE0;
+    margin: 0 auto 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.popup h2 {
+    color: var(--plum);
+    font-size: 23px;
+    line-height: 1.35;
+    margin-bottom: 9px;
+}
+
+.popup p {
+    color: #716278;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.popup-button {
+    display: inline-block;
+    padding: 11px 25px;
+    border: none;
+    border-radius: 25px;
+    background: var(--plum);
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.popup-button:hover {
+    background: #705786;
+    transform: translateY(-2px);
+}
+
+.popup-small {
+    margin-top: 13px;
+    font-size: 11px;
+    color: #88768F;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popupIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    .hero {
+        padding: 42px 5%;
+    }
+
+    .hero-content {
+        width: 46%;
+    }
+
+    .hero-visual {
+        width: 54%;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    header {
+        padding: 18px 5%;
+    }
+
+    nav {
+        gap: 12px 15px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 37px 6% 22px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-content,
+    .hero-visual {
+        width: 100%;
+        max-width: none;
+    }
+
+    .hero h1 {
+        font-size: 49px;
+        letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+        font-size: 28px;
+    }
+
+    .hero-visual {
+        min-height: auto;
+        margin-top: 18px;
+    }
+
+    .ground-art {
+        max-width: 500px;
+    }
+
+    .visual-note {
+        top: 0;
+        right: 0;
+        font-size: 10px;
+        padding: 8px 10px;
+    }
+
+    .visual-note strong {
+        font-size: 12px;
+    }
+
+    .section {
+        padding: 40px 6%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .college-section {
+        padding: 35px 6%;
+    }
+
+    .popup {
+        padding: 28px 20px 23px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+/* GRAND CURTAIN WELCOME POPUP */
+
+.curtain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #24152f;
+    animation: overlayAppear 0.5s ease;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 50.5%;
+    height: 100%;
+    z-index: 3;
+    background: repeating-linear-gradient(
+        90deg,
+        #351b48 0px,
+        #351b48 25px,
+        #563064 40px,
+        #75416f 52px,
+        #40204f 70px
+    );
+    box-shadow: inset 0 0 35px #170c20;
+}
+
+.curtain-left {
+    left: 0;
+    border-right: 4px solid #e9c77c;
+    animation: curtainLeftOpen 2s cubic-bezier(.7,0,.2,1) 0.5s forwards;
+}
+
+.curtain-right {
+    right: 0;
+    border-left: 4px solid #e9c77c;
+    animation: curtainRightOpen 2s cubic-bezier(.7,0,.2,1) 0.5s forwards;
+}
+
+.curtain-left::after,
+.curtain-right::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 12px;
+    height: 100%;
+    background: rgba(255, 224, 163, .2);
+}
+
+.curtain-left::after {
+    right: 12px;
+}
+
+.curtain-right::after {
+    left: 12px;
+}
+
+.welcome-grand {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 650px);
+    padding: 45px 25px;
+    text-align: center;
+    color: #49345f;
+    border: 3px solid #e9c77c;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #fff6fa, #fce8ef, #eee7fa);
+    box-shadow: 0 0 45px rgba(255, 220, 160, .35);
+    opacity: 0;
+    transform: scale(.65);
+    animation: welcomeGrandAppear 1s ease 1.8s forwards;
+}
+
+.welcome-crown {
+    font-size: 55px;
+    margin-bottom: 10px;
+    animation: crownFloat 2s ease-in-out infinite;
+}
+
+.welcome-grand h1 {
+    font-size: clamp(30px, 6vw, 56px);
+    line-height: 1.15;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #49345f;
+    margin-bottom: 15px;
+}
+
+.welcome-grand h1 span {
+    display: block;
+    color: #b45f8c;
+}
+
+.welcome-grand p {
+    font-size: 16px;
+    color: #705786;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.welcome-enter {
+    border: none;
+    padding: 14px 35px;
+    border-radius: 30px;
+    background: #49345f;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.welcome-enter:hover {
+    background: #b45f8c;
+    transform: translateY(-3px);
+}
+
+.welcome-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(73, 52, 95, .1);
+    color: #49345f;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.curtain-overlay.closing {
+    animation: overlayDisappear .6s ease forwards;
+}
+
+.curtain-overlay.closing .curtain-left {
+    animation: curtainLeftClose .7s ease forwards;
+}
+
+.curtain-overlay.closing .curtain-right {
+    animation: curtainRightClose .7s ease forwards;
+}
+
+.curtain-overlay.closing .welcome-grand {
+    animation: welcomeDisappear .4s ease forwards;
+}
+
+@keyframes curtainLeftOpen {
+    to { transform: translateX(-101%); }
+}
+
+@keyframes curtainRightOpen {
+    to { transform: translateX(101%); }
+}
+
+@keyframes welcomeGrandAppear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes crownFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes overlayAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes overlayDisappear {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes welcomeDisappear {
+    to {
+        opacity: 0;
+        transform: scale(.8);
+    }
+}
+
+@keyframes curtainLeftClose {
+    to { transform: translateX(0); }
+}
+
+@keyframes curtainRightClose {
+    to { transform: translateX(0); }
+}
+
+@media (max-width: 500px) {
+    .welcome-grand {
+        padding: 40px 18px;
+    }
+
+    .welcome-grand p {
+        font-size: 14px;
+    }
+
+    .welcome-crown {
+        font-size: 45px;
+    }
+}
+</style>
+</head>
+<!-- GRAND WELCOME SCREEN -->
+
+<div class="curtain-overlay" id="welcomeCurtains">
+
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+
+    <div class="welcome-grand">
+
+        <button class="welcome-close"
+                id="welcomeClose"
+                aria-label="Close welcome screen">
+            &times;
+        </button>
+
+        <div class="welcome-crown">🏆</div>
+
+        <h1>
+            WELCOME TO
+            <span>BECVerse!</span>
+        </h1>
+
+        <p>
+            Different Teams, Same Dream. 💜
+            <br>
+            One College. One Sporting Family.
+            <br>
+            Let the Champions' Journey Begin!
+        </p>
+
+        <button class="welcome-enter" id="welcomeEnter">
+            LET'S EXPLORE ✨
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+(function () {
+    const screen = document.getElementById("welcomeCurtains");
+    const enter = document.getElementById("welcomeEnter");
+    const close = document.getElementById("welcomeClose");
+
+    document.body.style.overflow = "hidden";
+
+    function closeWelcome() {
+        if (screen.classList.contains("closing")) return;
+
+        screen.classList.add("closing");
+
+        setTimeout(function () {
+            screen.remove();
+            document.body.style.overflow = "";
+        }, 750);
+    }
+
+    enter.addEventListener("click", closeWelcome);
+    close.addEventListener("click", closeWelcome);
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeWelcome();
+        }
+    });
+})();
+</script>
+<body>
+
+<!-- HEADER -->
+
+<header>
+    <div>
+        <div class="logo">BEC<span>Verse</span></div>
+        <div class="tagline">Bapatla Engineering College</div>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tournaments.html">Tournaments</a>
+        <a href="teams.html">Our Teams</a>
+        <a href="southzone.html">South Zone</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="registration.html" class="login-link">Register</a>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            THE OFFICIAL BEC SPORTS PORTAL
+        </div>
+
+        <h1>BEC<span>Verse</span></h1>
+
+        <div class="hero-subtitle">
+            Different Teams,<br>
+            <span>Same Dream.</span>
+        </div>
+
+        <div class="motto">
+            <span>PLAY</span>
+            <span class="separator">|</span>
+            <span>COMPETE</span>
+            <span class="separator">|</span>
+            <span>ACHIEVE</span>
+        </div>
+
+        <p class="hero-description">
+            One college. One sporting community. Endless possibilities.
+            Discover our teams, follow tournaments, and celebrate
+            every champion at Bapatla Engineering College.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="tournaments.html" class="button button-primary">
+                Explore Tournaments →
+            </a>
+
+            <a href="teams.html" class="button button-secondary">
+                Meet Our Teams →
+            </a>
+        </div>
+
+    </div>
+
+    <!-- SPORTS GROUND ILLUSTRATION: NO PLAYER PICTURES -->
+
+    <div class="hero-visual">
+
+        <div class="visual-note">
+            Play with passion
+            <strong>Respect every player ♡</strong>
+        </div>
+
+        <div class="ground-art">
+
+            <svg viewBox="0 0 700 410"
+                 role="img"
+                 aria-label="Illustrated college sports ground with football field, running track and sports courts">
+
+                <defs>
+                    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#D8DFF8"/>
+                        <stop offset="100%" stop-color="#FCE8EF"/>
+                    </linearGradient>
+
+                    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#A8D9B4"/>
+                        <stop offset="100%" stop-color="#68AD83"/>
+                    </linearGradient>
+
+                    <clipPath id="sceneClip">
+                        <rect width="700" height="410" rx="20"/>
+                    </clipPath>
+                </defs>
+
+                <g clip-path="url(#sceneClip)">
+
+                    <!-- Sky -->
+
+                    <rect width="700" height="410" fill="url(#sky)"/>
+
+                    <!-- Clouds -->
+
+                    <g fill="#FFFFFF" opacity=".9">
+                        <ellipse cx="105" cy="60" rx="40" ry="16"/>
+                        <ellipse cx="130" cy="49" rx="29" ry="22"/>
+                        <ellipse cx="155" cy="61" rx="36" ry="15"/>
+
+                        <ellipse cx="450" cy="50" rx="42" ry="17"/>
+                        <ellipse cx="478" cy="40" rx="29" ry="22"/>
+                        <ellipse cx="505" cy="52" rx="35" ry="15"/>
+                    </g>
+
+                    <!-- Distant greenery -->
+
+                    <path d="M0 185 Q90 125 180 175
+                             T360 165 T540 170 T700 150
+                             L700 240 L0 240 Z"
+                          fill="#B5DAB7"/>
+
+                    <!-- Campus buildings -->
+
+                    <g>
+                        <rect x="80" y="130" width="100" height="57"
+                              fill="#FFF0E3"/>
+
+                        <path d="M70 130 L130 98 L190 130 Z"
+                              fill="#C98F9C"/>
+
+                        <g fill="#A8CFE8">
+                            <rect x="96" y="143" width="14" height="17"/>
+                            <rect x="123" y="143" width="14" height="17"/>
+                            <rect x="150" y="143" width="14" height="17"/>
+                        </g>
+
+                        <rect x="510" y="128" width="100" height="60"
+                              fill="#F8E6F2"/>
+
+                        <path d="M500 128 L560 97 L620 128 Z"
+                              fill="#B8A2D5"/>
+
+                        <g fill="#A8CFE8">
+                            <rect x="526" y="142" width="14" height="17"/>
+                            <rect x="553" y="142" width="14" height="17"/>
+                            <rect x="580" y="142" width="14" height="17"/>
+                        </g>
+                    </g>
+
+                    <!-- Stadium stand -->
+
+                    <g>
+                        <rect x="260" y="105" width="190" height="72"
+                              rx="5" fill="#EEE7FA"/>
+
+                        <path d="M250 110 L275 88 L435 88 L460 110 Z"
+                              fill="#78628F"/>
+
+                        <path d="M275 115 L435 115 L425 130 L285 130 Z"
+                              fill="#D1C4E6"/>
+
+                        <path d="M285 132 L425 132 L415 147 L295 147 Z"
+                              fill="#C2DCCB"/>
+
+                        <path d="M295 149 L415 149 L405 164 L305 164 Z"
+                              fill="#A8CEB4"/>
+
+                        <g stroke="#A397B7" stroke-width="2">
+                            <path d="M290 115 V163 M315 115 V163
+                                     M340 115 V163 M365 115 V163
+                                     M390 115 V163 M415 115 V163"/>
+                        </g>
+                    </g>
+
+                    <!-- Stadium lights -->
+
+                    <g stroke="#776A88" stroke-width="4" fill="#FFF0C2">
+                        <path d="M45 78 V180"/>
+                        <rect x="29" y="65" width="32" height="13" rx="2"/>
+
+                        <path d="M650 74 V177"/>
+                        <rect x="634" y="61" width="32" height="13" rx="2"/>
+                    </g>
+
+                    <!-- Ground base -->
+
+                    <path d="M0 205 Q350 170 700 205
+                             L700 410 L0 410 Z"
+                          fill="#B8DDB6"/>
+
+                    <!-- Running track -->
+
+                    <path d="M25 252 Q350 170 675 252
+                             L675 315 Q350 235 25 315 Z"
+                          fill="#D98791"/>
+
+                    <path d="M37 257 Q350 184 663 257"
+                          fill="none" stroke="#FFE7E9" stroke-width="3"/>
+
+                    <path d="M32 276 Q350 203 668 276"
+                          fill="none" stroke="#FFE7E9" stroke-width="3"/>
+
+                    <path d="M29 295 Q350 222 671 295"
+                          fill="none" stroke="#FFE7E9" stroke-width="3"/>
+
+                    <!-- Football field -->
+
+                    <path d="M170 225 L365 187 L435 231 L238 273 Z"
+                          fill="url(#grass)"
+                          stroke="#FFFFFF"
+                          stroke-width="2"/>
+
+                    <path d="M270 206 L270 255"
+                          stroke="#FFFFFF"
+                          stroke-width="2"
+                          transform="rotate(-10 270 206)"/>
+
+                    <ellipse cx="300" cy="228" rx="25" ry="10"
+                             fill="none"
+                             stroke="#FFFFFF"
+                             stroke-width="2"
+                             transform="rotate(-10 300 228)"/>
+
+                    <path d="M184 222 L209 217 L219 239 L195 244 Z"
+                          fill="none"
+                          stroke="#FFFFFF"
+                          stroke-width="2"/>
+
+                    <path d="M391 211 L41

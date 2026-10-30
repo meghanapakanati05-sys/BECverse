@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BECVerse | Admin Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a, #134e4a);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px 32px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px #00000040;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .logo span {
+            color: #0d9488;
+        }
+
+        .tagline {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #334155;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px #0d948820;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #0d9488;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #0f766e;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+            text-decoration: none;
+            color: #0d9488;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 28px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">BEC<span>Verse</span></div>
+
+        <p class="tagline">Where Passion Meets Victory.</p>
+
+        <div class="icon">🔐</div>
+
+        <h2>Admin Login</h2>
+
+        <p class="subtitle">
+            Sports Department Management Portal
+        </p>
+
+        <form id="loginForm">
+
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter admin username"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter admin password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                Login to Dashboard →
+            </button>
+
+            <p id="message" role="status"></p>
+
+        </form>
+
+        <a href="index.html" class="back-link">
+            ← Back to Homepage
+        </a>
+
+        <div class="footer">
+            © 2026 BECVerse · Bapatla Engineering College
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            document.getElementById("message").textContent =
+                "Login authentication is not connected yet. This is a demo page.";
+
+            document.getElementById("message").style.color = "#b45309";
+        });
+    </script>
+
+</body>
+</html>

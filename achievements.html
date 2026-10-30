@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Achievements | BECVerse</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #243447;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #102a43;
+            color: white;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #35d6e8;
+        }
+
+        .tagline {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #cbd5e1;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #35d6e8;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            background: linear-gradient(135deg, #102a43, #167d9d);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            border: 1px solid #35d6e8;
+            color: #35d6e8;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #35d6e8;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 55px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #102a43;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ACHIEVEMENT CARDS */
+
+        .achievement-container {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(16, 42, 67, 0.08);
+            border-top: 4px solid #35bcd0;
+            transition: 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(16, 42, 67, 0.13);
+        }
+
+        .achievement-icon {
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+
+        .achievement-card h3 {
+            color: #102a43;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .achievement-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0f7fa;
+            color: #087e8b;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 18px;
+        }
+
+        /* VICTORY ALERT */
+
+        .victory-section {
+            padding: 10px 7% 55px;
+        }
+
+        .victory-box {
+            background: linear-gradient(135deg, #102a43, #167d9d);
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 18px;
+        }
+
+        .victory-box h2 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .victory-box p {
+            line-height: 1.8;
+            color: #e0f2fe;
+        }
+
+        .victory-label {
+            display: inline-block;
+            background: #35d6e8;
+            color: #102a43;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #102a43;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 22px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section {
+                padding: 40px 6%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div>
+            <div class="logo">BEC<span>Verse</span></div>
+            <div class="tagline">Where Passion Meets Victory.</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tournaments.html">Tournaments</a>
+            <a href="teams.html">Our Teams</a>
+            <a href="south-zone.html">South Zone</a>
+            <a href="achievements.html">Achievements</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-label">
+            CELEBRATING BEC EXCELLENCE
+        </div>
+
+        <h1>Our <span>Achievements</span></h1>
+
+        <p>
+            Every victory tells a story. Every achievement inspires
+            another dream.<br>
+            Celebrating the dedication and sporting spirit of
+            Bapatla Engineering College.
+        </p>
+
+    </section>
+
+
+    <!-- ACHIEVEMENTS SECTION -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Celebrating Our Victories</h2>
+
+            <p>
+                A proud collection of BEC sports achievements
+                and memorable performances.
+            </p>
+        </div>
+
+
+        <div class="achievement-container">
+
+
+            <!-- ACHIEVEMENT 1 -->
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">🏆</div>
+
+                <h3>Volleyball Achievement</h3>
+
+                <p>
+                    Celebrating the dedication, teamwork and
+                    determination of our BEC volleyball athletes.
+                </p>
+
+                <button class="badge"
+        onclick="showAchievement('Volleyball Achievement')">
+    Team Achievement
+</button>
+
+            </div>
+
+
+            <!-- ACHIEVEMENT 2 -->
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">🤾</div>
+
+                <h3>Handball Achievement</h3>
+
+                <p>
+                    Recognising the spirit, discipline and
+                    hard work of our college handball teams.
+                </p>
+
+                <span class="badge">Team Achievement</span>
+
+            </div>
+
+
+            <!-- ACHIEVEMENT 3 -->
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">🥇</div>
+
+                <h3>South Zone Participation</h3>
+
+                <p>
+                    Honouring BEC athletes who represent our
+                    college at South Zone inter-university events.
+                </p>
+
+                <span class="badge">Sports Recognition</span>
+
+            </div>
+
+
+            <!-- ACHIEVEMENT 4 -->
+
+            <div class="achievement-card">
+
+                <div class="achievement-icon">⭐</div>
+
+                <h3>Individual Excellence</h3>
+
+                <p>
+                    Celebrating outstanding performances,
+                    commitment and individual sporting talent.
+                </p>
+
+                <span class="badge">Athlete Recognition</span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- VICTORY ALERT SECTION -->
+
+    <section class="victory-section">
+
+        <div class="victory-box">
+
+            <div class="victory-label">
+                BECVERSE SPECIAL FEATURE
+            </div>
+
+            <h2>🔔 Victory Alert</h2>
+
+            <p>
+                Every victory deserves to be celebrated!
+                Stay updated with the latest tournament results
+                and achievements of BEC sports teams.
+            </p>
+
+            <p>
+                New achievements will be announced here
+                once the Sports Department updates the results.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 BECVerse | Bapatla Engineering College
+        </p>
+
+        <p style="margin-top: 8px;">
+            Where Passion Meets Victory.
+        </p>
+
+    </footer>
+<script>
+function showAchievement(name) {
+    alert(
+        name +
+        "\n\nBEC Sports Team Achievement" +
+        "\n\nOfficial results will be updated by the Sports Department."
+    );
+}
+</script>
+</body>
+
+</html>

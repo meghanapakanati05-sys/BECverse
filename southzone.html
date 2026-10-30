@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Zone | BECVerse</title><style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #1e293b;
+    }
+
+    header {
+        background: #102a43;
+        color: white;
+        padding: 20px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    header h1 {
+        color: #42e8e0;
+        font-size: 28px;
+    }
+
+    header p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #42e8e0;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #102a43, #087e9b);
+        color: white;
+        text-align: center;
+        padding: 55px 20px;
+    }
+
+    .hero h2 {
+        font-size: 38px;
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        line-height: 1.7;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 35px auto;
+        padding: 0 20px;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+        color: #102a43;
+        margin-bottom: 8px;
+    }
+
+    .filters {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+    input, select {
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 15px;
+        background: white;
+    }
+
+    input {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    select {
+        min-width: 160px;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 18px #102a4310;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 650px;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+        background: #102a43;
+        color: white;
+    }
+
+    tr:hover {
+        background: #ecfeff;
+    }
+
+    .badge {
+        background: #cffafe;
+        color: #155e75;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .award-section {
+        margin-top: 50px;
+    }
+
+    .award-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .award-card {
+        background: white;
+        padding: 28px 20px;
+        text-align: center;
+        border-radius: 14px;
+        border: 1px solid #dbeafe;
+        box-shadow: 0 5px 18px #102a4310;
+    }
+
+    .award-icon {
+        font-size: 42px;
+        margin-bottom: 12px;
+    }
+
+    .award-card h3 {
+        color: #087e9b;
+        margin-bottom: 10px;
+    }
+
+    .award-card p {
+        line-height: 1.7;
+        color: #64748b;
+    }
+
+    .note {
+        background: #e0f2fe;
+        color: #075985;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        line-height: 1.6;
+    }
+
+    footer {
+        background: #102a43;
+        color: white;
+        text-align: center;
+        padding: 22px;
+        margin-top: 50px;
+    }
+
+    @media (max-width: 600px) {
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero h2 {
+            font-size: 29px;
+        }
+    }
+</style>
+
+</head><body><header>
+    <div>
+        <h1>BECVerse</h1>
+        <p>Where Passion Meets Victory.</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tournaments.html">Tournaments</a>
+        <a href="teams.html">Our Teams</a>
+        <a href="southzone.html">South Zone</a>
+        <a href="achievements.html">Achievements</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>South Zone Athletes</h2>
+    <p>Celebrating the dedication and achievements of BEC athletes.</p>
+    <p>Explore participation records and honour our sporting champions.</p>
+</section>
+
+<main class="container">
+
+    <section>
+        <div class="section-title">
+            <h2>South Zone Participation Records</h2>
+            <p>Search athlete records by name, sport or year.</p>
+        </div>
+
+        <div class="filters">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search name, branch or registration number..."
+                oninput="filterPlayers()"
+            >
+
+            <select id="sportFilter" onchange="filterPlayers()">
+                <option value="">All Sports</option>
+                <option value="Volleyball">Volleyball</option>
+                <option value="Handball">Handball</option>
+                <option value="Athletics">Athletics</option>
+                <option value="Badminton">Badminton</option>
+            </select>
+
+            <select id="yearFilter" onchange="filterPlayers()">
+                <option value="">All Years</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+            </select>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Registration No.</th>
+                        <th>Branch</th>
+                        <th>Sport</th>
+                        <th>Participation Year</th>
+                    </tr>
+                </thead>
+
+                <tbody id="playerTable">
+                    <tr data-sport="Volleyball" data-year="2026">
+                        <td>Demo Player 1</td>
+                        <td>DEMO001</td>
+                        <td>ECE</td>
+                        <td><span class="badge">Volleyball</span></td>
+                        <td>2026</td>
+                    </tr>
+
+                    <tr data-sport="Handball" data-year="2025">
+                        <td>Demo Player 2</td>
+                        <td>DEMO002</td>
+                        <td>CSE</td>
+                        <td><span class="badge">Handball</span></td>
+                        <td>2025</td>
+                    </tr>
+
+                    <tr data-sport="Athletics" data-year="2024">
+                        <td>Demo Player 3</td>
+                        <td>DEMO003</td>
+                        <td>EEE</td>
+                        <td><span class="badge">Athletics</span></td>
+                        <td>2024</td>
+                    </tr>
+
+                    <tr data-sport="Badminton" data-year="2026">
+                        <td>Demo Player 4</td>
+                        <td>DEMO004</td>
+                        <td>IT</td>
+                        <td><span class="badge">Badminton</span></td>
+                        <td>2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="noResults" style="display:none; text-align:center; padding:20px;">
+            No matching players found.
+        </p>
+
+        <div class="note">
+            <strong>Note:</strong> These are sample records for demonstration only.
+            Actual player information will be added after approval from the BEC Sports Department.
+        </div>
+    </section>
+
+    <section class="award-section">
+        <div class="section-title">
+            <h2>Best Player of the Year</h2>
+            <p>Recognising outstanding South Zone participation.</p>
+        </div>
+
+        <div class="award-cards">
+            <div class="award-card">
+                <div class="award-icon">🏆</div>
+                <h3>Best Male Player</h3>
+                <p>Winner details will be announced by the Sports Department.</p>
+                <p><strong>Selection:</strong> Highest number of South Zone participations.</p>
+            </div>
+
+            <div class="award-card">
+                <div class="award-icon">🏆</div>
+                <h3>Best Female Player</h3>
+                <p>Winner details will be announced by the Sports Department.</p>
+                <p><strong>Selection:</strong> Highest number of South Zone participations.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>BECVerse | Where Passion Meets Victory.</p>
+    <p>Official Sports Portal of Bapatla Engineering College</p>
+</footer>
+
+<script>
+    function filterPlayers() {
+        const searchText = document
+            .getElementById("searchInput")
+            .value.toLowerCase();
+
+        const selectedSport = document
+            .getElementById("sportFilter")
+            .value;
+
+        const selectedYear = document
+            .getElementById("yearFilter")
+            .value;
+
+        const rows = document.querySelectorAll("#playerTable tr");
+        let visibleCount = 0;
+
+        rows.forEach(function(row) {
+            const rowText = row.innerText.toLowerCase();
+            const sport = row.dataset.sport;
+            const year = row.dataset.year;
+
+            const matchesSearch = rowText.includes(searchText);
+            const matchesSport =
+                selectedSport === "" || sport === selectedSport;
+            const matchesYear =
+                selectedYear === "" || year === selectedYear;
+
+            if (matchesSearch && matchesSport && matchesYear) {
+                row.style.display = "";
+                visibleCount++;
+            } else {
+                row.style.display = "none";
+            }
+        });
+
+        document.getElementById("noResults").style.display =
+            visibleCount === 0 ? "block" : "none";
+    }
+</script>
+
+</body>
+</html>

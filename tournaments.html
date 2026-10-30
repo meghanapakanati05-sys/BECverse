@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournaments | BECVerse</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --plum: #49345F;
+            --plum-light: #684D80;
+            --text: #40384B;
+            --muted: #777083;
+            --pink: #FCE8EF;
+            --lavender: #EEE7FA;
+            --mint: #E2F3EA;
+            --blue: #E4F0FC;
+            --peach: #FFF0E3;
+            --border: #E8E1ED;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #FAF8FC;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--plum);
+            color: white;
+            padding: 19px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 18px rgba(73, 52, 95, 0.12);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 0.3px;
+        }
+
+        .logo span {
+            color: #F6CDE0;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #E5DCEE;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        nav a {
+            color: #F8F4FC;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #F6CDE0;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(
+                125deg,
+                #FCE8EF 0%,
+                #F0E8FB 55%,
+                #E5F1FC 100%
+            );
+            padding: 70px 7%;
+            text-align: center;
+            border-bottom: 1px solid #E9DDEE;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid #E8C9E0;
+            color: #68466E;
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 17px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            color: #49345F;
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #665B74;
+            font-size: 15px;
+        }
+
+        /* MAIN */
+        .main {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 45px 20px 60px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-heading h2 {
+            font-size: 29px;
+            color: #49345F;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* SEARCH AND FILTERS */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid #DDD3E8;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+            color: var(--text);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-box input::placeholder {
+            color: #958AA1;
+        }
+
+        .search-box input:focus {
+            border-color: #A48BC5;
+            box-shadow: 0 0 0 3px rgba(164, 139, 197, 0.15);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 10px 15px;
+            border: 1px solid #DDD3E8;
+            border-radius: 10px;
+            background: white;
+            color: #5A4C69;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: all 0.25s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--plum);
+            color: white;
+            border-color: var(--plum);
+        }
+
+        /* TOURNAMENT GRID */
+        .tournament-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .tournament-card {
+            background: white;
+            border-radius: 17px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 18px rgba(73, 52, 95, 0.055);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* A small colourful strip on every card */
+        .tournament-card::before {
+            content: "";
+            display: block;
+            height: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-accent, #BBA5D8);
+        }
+
+        .tournament-card:nth-child(4n + 1) {
+            --card-accent: #D99DBB;
+            --icon-bg: #FCE8EF;
+        }
+
+        .tournament-card:nth-child(4n + 2) {
+            --card-accent: #A895D1;
+            --icon-bg: #EEE7FA;
+        }
+
+        .tournament-card:nth-child(4n + 3) {
+            --card-accent: #7FBBA0;
+            --icon-bg: #E2F3EA;
+        }
+
+        .tournament-card:nth-child(4n + 4) {
+            --card-accent: #83B6DE;
+            --icon-bg: #E4F0FC;
+        }
+
+        .tournament-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 28px rgba(73, 52, 95, 0.12);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0 18px;
+        }
+
+        .sport-icon {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            background: var(--icon-bg, #EEE7FA);
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 26px;
+        }
+
+        .status {
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .upcoming {
+            background: #E0F3E6;
+            color: #276342;
+        }
+
+        .completed {
+            background: #E4EAFB;
+            color: #425B9B;
+        }
+
+        .tournament-card h3 {
+            color: #49345F;
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .sport-name {
+            color: #80649C;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .details {
+            border-top: 1px solid #EEE8F1;
+            padding-top: 14px;
+            margin-top: 14px;
+        }
+
+        .details p {
+            color: #777083;
+            font-size: 13px;
+            margin: 8px 0;
+        }
+
+        .details strong {
+            color: #51445F;
+        }
+
+        /* OPTIONAL RESULT BOX */
+        .result {
+            background: #E2F3EA;
+            border-left: 3px solid #7FBBA0;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #315C49;
+        }
+
+        /* EMPTY MESSAGE */
+        .empty-message {
+            display: none;
+            text-align: center;
+            padding: 35px;
+            color: #777083;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-top: 20px;
+        }
+
+        /* NOTICE */
+        .notice {
+            background: linear-gradient(120deg, #FCE8EF, #F0E8FB);
+            border: 1px solid #E9DDEE;
+            padding: 19px;
+            border-radius: 13px;
+            margin-top: 35px;
+            color: #5D486D;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--plum);
+            color: #E5DCEE;
+            text-align: center;
+            padding: 27px 15px;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        footer strong {
+            color: #F6CDE0;
+            font-size: 15px;
+        }
+
+        /* TABLET */
+        @media (max-width: 900px) {
+            .tournament-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 52px 6%;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .tournament-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                align-items: stretch;
+            }
+
+            .filters {
+                justify-content: center;
+            }
+
+            .filter-btn {
+                flex: 1;
+                padding: 10px 8px;
+            }
+
+            .section-heading h2 {
+                font-size: 25px;
+            }
+
+            nav {
+                gap: 13px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <div class="logo">BEC<span>Verse</span></div>
+            <div class="tagline">Where Passion Meets Victory.</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tournaments.html" class="active">Tournaments</a>
+            <a href="teams.html">Our Teams</a>
+            <a href="south-zone.html">South Zone</a>
+            <a href="achievements.html">Achievements</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-label">✦ THE SPIRIT OF COMPETITION ✦</div>
+        <h1>Sports Tournaments</h1>
+        <p>
+            Every match is an opportunity. Explore BEC sports tournaments,
+            follow upcoming events, and celebrate our victories.
+        </p>
+    </section>
+
+    <main class="main">
+
+        <div class="section-heading">
+            <h2>Explore Tournaments</h2>
+            <p>All your college sports events in one place.</p>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by tournament or sport..."
+                    aria-label="Search tournaments">
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">
+                    All Events
+                </button>
+
+                <button class="filter-btn" data-filter="upcoming">
+                    Upcoming
+                </button>
+
+                <button class="filter-btn" data-filter="completed">
+                    Completed
+                </button>
+            </div>
+        </div>
+
+        <div class="tournament-grid" id="tournamentGrid">
+
+            <article class="tournament-card"
+                     data-status="upcoming"
+                     data-search="inter college volleyball volleyball">
+
+                <div class="card-top">
+                    <div class="sport-icon">🏐</div>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+
+                <h3>Inter-College Tournament</h3>
+                <div class="sport-name">Volleyball</div>
+
+                <div class="details">
+                    <p>📅 <strong>Date:</strong> To be announced</p>
+                    <p>📍 <strong>Venue:</strong> To be announced</p>
+                    <p>👥 <strong>Teams:</strong> To be announced</p>
+                </div>
+            </article>
+
+            <article class="tournament-card"
+                     data-status="upcoming"
+                     data-search="college handball championship handball">
+
+                <div class="card-top">
+                    <div class="sport-icon">🤾</div>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+
+                <h3>College Championship</h3>
+                <div class="sport-name">Handball</div>
+
+                <div class="details">
+                    <p>📅 <strong>Date:</strong> To be announced</p>
+                    <p>📍 <strong>Venue:</strong> To be announced</p>
+                    <p>👥 <strong>Teams:</strong> To be announced</p>
+                </div>
+            </article>
+
+            <article class="tournament-card"
+                     data-status="upcoming"
+                     data-search="inter college cricket cricket">
+
+                <div class="card-top">
+                    <div class="sport-icon">🏏</div>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+
+                <h3>Inter-College Tournament</h3>
+                <div class="sport-name">Cricket</div>
+
+                <div class="details">
+                    <p>📅 <strong>Date:</strong> To be announced</p>
+                    <p>📍 <strong>Venue:</strong> College Ground</p>
+                    <p>👥 <strong>Teams:</strong> To be announced</p>
+                </div>
+            </article>
+
+            <article class="tournament-card"
+                     data-status="upcoming"
+                     data-search="college kabaddi competition kabaddi">
+
+                <div class="card-top">
+                    <div class="sport-icon">🤼</div>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+
+                <h3>College Sports Competition</h3>
+                <div class="sport-name">Kabaddi</div>
+
+                <div class="details">
+                    <p>📅 <strong>Date:</strong> To be announced</p>
+                    <p>📍 <strong>Venue:</strong> College Ground</p>
+                    <p>👥 <strong>Teams:</strong> To be announced</p>
+                </div>
+            </article>
+
+            <article class="tournament-card"
+                     data-status="upcoming"
+                     data-search="college kho kho tournament kho-kho">
+
+                <div class="card-top">
+                    <div class="sport-icon">🏃</div>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+
+                <h3>College Tournament</h3>
+                <div class="sport-name">Kho-Kho</div>
+
+                <div class="details">
+                    <p>📅 <strong>Date:</strong> To be announced</p>
+                    <p>📍 <strong>Venue:</strong> College Ground</p>
+                    <p>👥 <strong>Teams:</strong> To be announced</p>
+                </div>
+            </article>
+
+            <article class="tournament-card"
+                     data-status="upcoming"
+                     data-search="college badminton tournament badminton">
+
+                <div class="card-top">
+                    <div class="sport-icon">🏸</div>
+                    <span class="status upcoming">Upcoming</span>
+                </div>
+
+                <h3>College Tournament</h3>
+                <div class="sport-name">Badminton</div>
+
+                <div class="details">
+                    <p>📅 <strong>Date:</strong> To be announced</p>
+                    <p>📍 <strong>Venue:</strong> To be announced</p>
+                    <p>👥 <strong>Teams:</strong> To be announced</p>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="empty-message" id="emptyMessage">
+            No tournaments found. Try another search.
+        </div>
+
+        <div class="notice">
+            📢 Tournament dates, venues, and results will be updated
+            by the BEC Sports Department.
+        </div>
+
+    </main>
+
+    <footer>
+        <p><strong>BECVerse</strong> | Where Passion Meets Victory.</p>
+        <p>Official Sports Portal of Bapatla Engineering College</p>
+        <p>© 2026 BECVerse. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const tournamentCards = document.querySelectorAll(".tournament-card");
+        const emptyMessage = document.getElementById("emptyMessage");
+
+        let currentFilter = "all";
+
+        function filterTournaments() {
+            const searchText = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            tournamentCards.forEach(function(card) {
+                const status = card.dataset.status;
+                const searchData =
+                    (card.dataset.search + " " + card.innerText).toLowerCase();
+
+                const matchesSearch = searchData.includes(searchText);
+                const matchesFilter =
+                    currentFilter === "all" || status === currentFilter;
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = "";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            emptyMessage.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        searchInput.addEventListener("input", filterTournaments);
+
+        filterButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+                currentFilter = button.dataset.filter;
+
+                filterTournaments();
+            });
+        });
+    </script>
+
+</body>
+</html>
