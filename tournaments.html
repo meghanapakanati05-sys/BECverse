@@ -497,123 +497,15 @@
             </div>
         </div>
 
+   
+
         <div class="tournament-grid" id="tournamentGrid">
 
-            <article class="tournament-card"
-                     data-status="upcoming"
-                     data-search="inter college volleyball volleyball">
+    <p id="loadingMessage" style="text-align:center; padding:20px;">
+        Loading tournaments...
+    </p>
 
-                <div class="card-top">
-                    <div class="sport-icon">🏐</div>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
-
-                <h3>Inter-College Tournament</h3>
-                <div class="sport-name">Volleyball</div>
-
-                <div class="details">
-                    <p>📅 <strong>Date:</strong> To be announced</p>
-                    <p>📍 <strong>Venue:</strong> To be announced</p>
-                    <p>👥 <strong>Teams:</strong> To be announced</p>
-                </div>
-            </article>
-
-            <article class="tournament-card"
-                     data-status="upcoming"
-                     data-search="college handball championship handball">
-
-                <div class="card-top">
-                    <div class="sport-icon">🤾</div>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
-
-                <h3>College Championship</h3>
-                <div class="sport-name">Handball</div>
-
-                <div class="details">
-                    <p>📅 <strong>Date:</strong> To be announced</p>
-                    <p>📍 <strong>Venue:</strong> To be announced</p>
-                    <p>👥 <strong>Teams:</strong> To be announced</p>
-                </div>
-            </article>
-
-            <article class="tournament-card"
-                     data-status="upcoming"
-                     data-search="inter college cricket cricket">
-
-                <div class="card-top">
-                    <div class="sport-icon">🏏</div>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
-
-                <h3>Inter-College Tournament</h3>
-                <div class="sport-name">Cricket</div>
-
-                <div class="details">
-                    <p>📅 <strong>Date:</strong> To be announced</p>
-                    <p>📍 <strong>Venue:</strong> College Ground</p>
-                    <p>👥 <strong>Teams:</strong> To be announced</p>
-                </div>
-            </article>
-
-            <article class="tournament-card"
-                     data-status="upcoming"
-                     data-search="college kabaddi competition kabaddi">
-
-                <div class="card-top">
-                    <div class="sport-icon">🤼</div>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
-
-                <h3>College Sports Competition</h3>
-                <div class="sport-name">Kabaddi</div>
-
-                <div class="details">
-                    <p>📅 <strong>Date:</strong> To be announced</p>
-                    <p>📍 <strong>Venue:</strong> College Ground</p>
-                    <p>👥 <strong>Teams:</strong> To be announced</p>
-                </div>
-            </article>
-
-            <article class="tournament-card"
-                     data-status="upcoming"
-                     data-search="college kho kho tournament kho-kho">
-
-                <div class="card-top">
-                    <div class="sport-icon">🏃</div>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
-
-                <h3>College Tournament</h3>
-                <div class="sport-name">Kho-Kho</div>
-
-                <div class="details">
-                    <p>📅 <strong>Date:</strong> To be announced</p>
-                    <p>📍 <strong>Venue:</strong> College Ground</p>
-                    <p>👥 <strong>Teams:</strong> To be announced</p>
-                </div>
-            </article>
-
-            <article class="tournament-card"
-                     data-status="upcoming"
-                     data-search="college badminton tournament badminton">
-
-                <div class="card-top">
-                    <div class="sport-icon">🏸</div>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
-
-                <h3>College Tournament</h3>
-                <div class="sport-name">Badminton</div>
-
-                <div class="details">
-                    <p>📅 <strong>Date:</strong> To be announced</p>
-                    <p>📍 <strong>Venue:</strong> To be announced</p>
-                    <p>👥 <strong>Teams:</strong> To be announced</p>
-                </div>
-            </article>
-
-        </div>
+</div>
 
         <div class="empty-message" id="emptyMessage">
             No tournaments found. Try another search.
@@ -632,53 +524,182 @@
         <p>© 2026 BECVerse. All rights reserved.</p>
     </footer>
 
-    <script>
-        const searchInput = document.getElementById("searchInput");
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const tournamentCards = document.querySelectorAll(".tournament-card");
-        const emptyMessage = document.getElementById("emptyMessage");
+    <script type="module">
+        import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-        let currentFilter = "all";
+const SUPABASE_URL = "https://suznvkevthyvcoccsvtd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZkIBlHBagVHqiHysYdeejg_mQih6cob";
 
-        function filterTournaments() {
-            const searchText = searchInput.value.toLowerCase().trim();
-            let visibleCount = 0;
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
-            tournamentCards.forEach(function(card) {
-                const status = card.dataset.status;
-                const searchData =
-                    (card.dataset.search + " " + card.innerText).toLowerCase();
+const searchInput = document.getElementById("searchInput");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const tournamentGrid = document.getElementById("tournamentGrid");
+const emptyMessage = document.getElementById("emptyMessage");
+const loadingMessage = document.getElementById("loadingMessage");
 
-                const matchesSearch = searchData.includes(searchText);
-                const matchesFilter =
-                    currentFilter === "all" || status === currentFilter;
+let currentFilter = "all";
 
-                if (matchesSearch && matchesFilter) {
-                    card.style.display = "";
-                    visibleCount++;
-                } else {
-                    card.style.display = "none";
-                }
-            });
+function getStatus(tournament) {
+    if (tournament.status) {
+        return tournament.status.toLowerCase() === "completed"
+            ? "completed"
+            : "upcoming";
+    }
 
-            emptyMessage.style.display =
-                visibleCount === 0 ? "block" : "none";
-        }
+    if (tournament.end_date &&
+        tournament.end_date < new Date().toISOString().slice(0, 10)) {
+        return "completed";
+    }
 
-        searchInput.addEventListener("input", filterTournaments);
+    return "upcoming";
+}
 
-        filterButtons.forEach(function(button) {
-            button.addEventListener("click", function() {
-                filterButtons.forEach(function(btn) {
-                    btn.classList.remove("active");
-                });
+function formatDate(date) {
+    if (!date) return "Not announced";
 
-                button.classList.add("active");
-                currentFilter = button.dataset.filter;
+    return new Date(date + "T00:00:00").toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+}
 
-                filterTournaments();
-            });
-        });
+function getSportIcon(sport) {
+    const name = sport.toLowerCase();
+
+    if (name.includes("volleyball")) return "🏐";
+    if (name.includes("handball")) return "🤾";
+    if (name.includes("cricket")) return "🏏";
+    if (name.includes("kabaddi")) return "🤼";
+    if (name.includes("kho")) return "🏃";
+    if (name.includes("badminton")) return "🏸";
+    if (name.includes("football")) return "⚽";
+    if (name.includes("basketball")) return "🏀";
+
+    return "🏆";
+}
+
+function createTournamentCard(tournament) {
+    const card = document.createElement("article");
+    const status = getStatus(tournament);
+
+    card.className = "tournament-card";
+    card.dataset.status = status;
+    card.dataset.search =
+        `${tournament.name} ${tournament.sport} ${tournament.venue || ""}`
+        .toLowerCase();
+
+    const top = document.createElement("div");
+    top.className = "card-top";
+
+    const icon = document.createElement("div");
+    icon.className = "sport-icon";
+    icon.textContent = getSportIcon(tournament.sport);
+
+    const badge = document.createElement("span");
+    badge.className = `status ${status}`;
+    badge.textContent = status === "completed" ? "Completed" : "Upcoming";
+
+    top.append(icon, badge);
+
+    const title = document.createElement("h3");
+    title.textContent = tournament.name;
+
+    const sport = document.createElement("div");
+    sport.className = "sport-name";
+    sport.textContent = tournament.sport;
+
+    const details = document.createElement("div");
+    details.className = "details";
+
+    const date = document.createElement("p");
+    date.textContent =
+        `📅 Date: ${formatDate(tournament.start_date)}` +
+        (tournament.end_date
+            ? ` – ${formatDate(tournament.end_date)}`
+            : "");
+
+    const venue = document.createElement("p");
+    venue.textContent = `📍 Venue: ${tournament.venue || "Not announced"}`;
+
+    details.append(date, venue);
+    card.append(top, title, sport, details);
+
+    return card;
+}
+
+function filterTournaments() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    tournamentGrid.querySelectorAll(".tournament-card").forEach(card => {
+        const matchesSearch =
+            (card.dataset.search + " " + card.innerText.toLowerCase())
+            .includes(searchText);
+
+        const matchesFilter =
+            currentFilter === "all" ||
+            card.dataset.status === currentFilter;
+
+        card.style.display =
+            matchesSearch && matchesFilter ? "" : "none";
+
+        if (matchesSearch && matchesFilter) visibleCount++;
+    });
+
+    emptyMessage.style.display = visibleCount === 0 ? "block" : "none";
+}
+
+async function loadTournaments() {
+    loadingMessage.textContent = "Loading tournaments...";
+
+    const { data, error } = await supabase
+        .from("tournaments")
+        .select("*")
+        .order("start_date", { ascending: true });
+
+    loadingMessage.style.display = "none";
+
+    if (error) {
+        emptyMessage.textContent =
+            "Could not load tournaments. Please try again later.";
+        emptyMessage.style.display = "block";
+        console.error("Tournament loading error:", error.message);
+        return;
+    }
+
+    tournamentGrid.replaceChildren();
+
+    if (!data || data.length === 0) {
+        emptyMessage.textContent = "No tournaments added yet.";
+        emptyMessage.style.display = "block";
+        return;
+    }
+
+    data.forEach(tournament => {
+        tournamentGrid.appendChild(createTournamentCard(tournament));
+    });
+
+    filterTournaments();
+}
+
+searchInput.addEventListener("input", filterTournaments);
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        currentFilter = button.dataset.filter;
+        filterTournaments();
+    });
+});
+
+loadTournaments();
     </script>
 
 </body>

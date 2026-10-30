@@ -492,13 +492,21 @@
         <p>&copy; 2026 BECVerse. All rights reserved.</p>
     </footer>
 
-    <script>
+    <script type="module">
         /*
          * Demo roster data.
          * Each team has a captain first, followed by other players.
          * Replace these sample names with verified player names later.
          */
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
+const SUPABASE_URL = "https://suznvkevthyvcoccsvtd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZkIBlHBagVHqiHysYdeejg_mQih6cob";
+
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
         const sports = [
             {
                 name: "Volleyball",
@@ -622,27 +630,62 @@
             "Sahithi Rao"
         ];
 
-        /*
-         * Generate a demo roster for every sport.
-         * These are placeholders, not real student records.
-         */
-
         const teamData = {};
 
-        sports.forEach((sport, index) => {
-            const menNames = [...sampleNames];
-            const womenNames = [...sampleWomenNames];
+async function loadTeams() {
+    const { data, error } = await supabase
+        .from("teams")
+        .select("*");
 
-            const menCaptain = menNames.splice(index % menNames.length, 1)[0];
-            const womenCaptain = womenNames.splice(
-                index % womenNames.length, 1
-            )[0];
+    if (error) {
+    console.error("Teams loading error:", error);
+    alert("Teams loading failed: " + error.message);
+    return;
+}
 
-            teamData[sport.name] = {
-                men: [menCaptain, ...menNames],
-                women: [womenCaptain, ...womenNames]
+console.log("Teams received from database:", data);
+
+    Object.keys(teamData).forEach(key => delete teamData[key]);
+
+    data.forEach(team => {
+        const sportName = sports.find(
+    item => item.name.toLowerCase() === team.sport.trim().toLowerCase()
+)?.name || team.sport.trim();
+        console.log("Sport:", team.sport, "| Category:", team.category,
+    "| Captain:", team.captain_name, "| Players:", team.players);
+
+        if (!teamData[sportName]) {
+            teamData[sportName] = {
+                men: [],
+                women: []
             };
-        });
+        }
+
+        const category = (team.category || "").toLowerCase();
+
+        const gender = category.includes("women")
+            ? "women"
+            : category.includes("men")
+                ? "men"
+                : null;
+
+        if (!gender) return;
+
+        const names = (team.players || "")
+            .split(",")
+            .map(name => name.trim())
+            .filter(Boolean);
+
+        const captain = (team.captain_name || "").trim();
+
+        const allNames = [
+            ...(captain ? [captain] : []),
+            ...names.filter(name => name !== captain)
+        ];
+
+        teamData[sportName][gender].push(...allNames);
+    });
+}
 
         const sportsGrid = document.getElementById("sportsGrid");
         const teamModal = document.getElementById("teamModal");
@@ -724,10 +767,17 @@
 
     const sport = sports.find(item => item.name === sportName);
 
-    if (!sport || !teamData[sportName]) {
-        alert("Team details not found!");
-        return;
-    }
+    if (!sport) {
+    alert("Sport card not found!");
+    return;
+}
+
+if (!teamData[sportName]) {
+    teamData[sportName] = {
+        men: [],
+        women: []
+    };
+}
 
     modalSportIcon.textContent = sport.icon;
     modalSportName.textContent = sport.name;
@@ -825,12 +875,21 @@ document.addEventListener("keydown", event => {
     }
 });
 
-try {
-    createSportCards();
-    console.log("Sports cards created:", sportsGrid.children.length);
-} catch (error) {
-    console.error("BECVerse error:", error);
+async function initializeTeams() {
+    try {
+        await loadTeams();
+        createSportCards();
+
+        console.log(
+            "Sports cards created:",
+            sportsGrid.children.length
+        );
+    } catch (error) {
+        console.error("BECVerse error:", error);
+    }
 }
+
+initializeTeams();
 </script>
 </body>
 </html>
