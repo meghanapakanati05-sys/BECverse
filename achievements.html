@@ -399,6 +399,17 @@ footer {
     </p>
 </section>
 
+<section class="card" style="max-width: 1100px; margin: 30px auto; padding: 25px; background: white; border-radius: 14px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+    <h2 style="color: #102a43; margin-bottom: 15px;">
+        🏆 BECVerse Winning Message
+    </h2>
+
+    <p id="winningMessageDisplay" aria-live="polite"
+       style="font-size: 18px; line-height: 1.8;">
+        Loading winning message...
+    </p>
+</section>
+
 <section class="section">
     <div class="section-title">
         <h2>Celebrating Our Victories</h2>
@@ -908,6 +919,42 @@ function showWinningPopup() {
 }
 ;
 </script>
+
+
+
+<script type="module">
+import { createClient } from
+  "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
+  "https://suznvkevthyvcoccsvtd.supabase.co",
+  "sb_publishable_ZkIBlHBagVHqiHysYdeejg_mQih6cob"
+);
+
+async function loadWinningMessage() {
+  const display = document.getElementById("winningMessageDisplay");
+
+  const { data, error } = await supabase
+    .from("achievement_message")
+    .select("message")
+    .eq("id", 1)
+    .maybeSingle();
+
+  if (error) {
+    display.textContent =
+  "Error loading message: " + error.message;
+    console.error(error);
+    return;
+  }
+
+  display.textContent = data
+    ? data.message
+    : "No winning message has been added yet.";
+}
+
+loadWinningMessage();
+</script>
+
 
 </body>
 </html>

@@ -1,0 +1,796 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BECVerse | Admin Dashboard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 22px;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+    }
+
+    header p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 25px auto;
+      padding: 0 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px #0f172a12;
+      min-width: 0;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin-top: 13px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      font-size: 15px;
+      background: white;
+    }
+
+    button {
+      background: #0d9488;
+      color: white;
+      border: 0;
+      padding: 12px 16px;
+      margin-top: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #0f766e;
+    }
+
+    .secondary-btn {
+      background: #334155;
+    }
+
+    .secondary-btn:hover {
+      background: #1e293b;
+    }
+
+    .form-panel {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .notice {
+      padding: 14px;
+      background: white;
+      border-radius: 10px;
+      margin-top: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    #status {
+      margin-top: 20px;
+      padding: 14px;
+      background: white;
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      padding: 25px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>BECVerse Admin</h1>
+    <p>Sports Department Management Dashboard</p>
+  </header>
+
+  <main>
+    <h2>Welcome, Admin!</h2>
+    <p>Manage college sports information from one place.</p>
+
+    <div class="grid">
+
+      <!-- TOURNAMENTS -->
+      <section class="card">
+        <h2>🏆 Tournaments</h2>
+        <p>Add and manage tournament names, dates and venues.</p>
+
+        <form id="tournamentForm">
+          <div id="tournamentList">Loading tournaments...</div>
+
+          <label for="tournamentName">Tournament Name</label>
+          <input id="tournamentName" type="text"
+                 required placeholder="e.g. Inter-College Volleyball">
+
+          <label for="sport">Sport</label>
+          <input id="sport" type="text"
+                 required placeholder="e.g. Volleyball">
+
+          <label for="startDate">Start Date</label>
+          <input id="startDate" type="date">
+
+          <label for="endDate">End Date</label>
+          <input id="endDate" type="date">
+
+          <label for="venue">Venue</label>
+          <input id="venue" type="text" placeholder="Enter venue">
+
+          <button type="submit">Save Tournament</button>
+        </form>
+      </section>
+
+      <!-- MANAGE TEAMS -->
+      <section class="card">
+        <h2>🏐 Our Teams</h2>
+        <p>Manage sports teams, captains and player details.</p>
+
+        <button type="button" id="manageTeamsBtn">
+          🏐 Manage Teams
+        </button>
+
+        <div id="teamFormPanel" class="form-panel" hidden>
+          <h3>Add Sports Team</h3>
+
+          <form id="teamForm">
+            <label for="teamSport">Sport</label>
+            <select id="teamSport" required>
+    <option value="">Select Sport</option>
+    <option value="Volleyball">Volleyball</option>
+    <option value="Handball">Handball</option>
+    <option value="Kabaddi">Kabaddi</option>
+    <option value="Kho-Kho">Kho-Kho</option>
+    <option value="Badminton">Badminton</option>
+    <option value="Athletics">Athletics</option>
+    <option value="Basketball">Basketball</option>
+    <option value="Cricket">Cricket</option>
+    <option value="Football">Football</option>
+    <option value="Table Tennis">Table Tennis</option>
+    <option value="Tennis">Tennis</option>
+    <option value="Chess">Chess</option>
+    <option value="Carroms">Carroms</option>
+    <option value="Throwball">Throwball</option>
+    <option value="Weightlifting">Weightlifting</option>
+    <option value="Powerlifting">Powerlifting</option>
+    <option value="Yoga">Yoga</option>
+</select>
+
+            <label for="teamName">Team Name</label>
+            <input id="teamName" type="text"
+                   required placeholder="e.g. BEC Volleyball Team">
+
+            <label for="teamCategory">Category</label>
+            <select id="teamCategory" required>
+              <option value="">Select Category</option>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+            </select>
+
+            <label for="captainName">Captain Name</label>
+            <input id="captainName" type="text"
+                   placeholder="Enter captain name">
+
+            <label for="teamPlayers">Player Names</label>
+            <textarea id="teamPlayers" rows="4" required
+                      placeholder="Enter player names separated by commas"></textarea>
+
+            <button type="submit">Save Team</button>
+            <button type="button" id="closeTeamForm"
+                    class="secondary-btn">Close Form</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- SOUTH ZONE PARTICIPANTS -->
+      <section class="card">
+        <h2>🥇 South Zone Participants</h2>
+        <p>Add South Zone players to the database.</p>
+
+        <form id="participantForm">
+          <label for="participantName">Player Name</label>
+          <input id="participantName" type="text"
+                 required placeholder="Enter player name">
+
+          <label for="participantSport">Sport</label>
+          <select id="participantSport" required>
+            <option value="">Select sport</option>
+            <option value="Volleyball">Volleyball</option>
+            <option value="Handball">Handball</option>
+            <option value="Athletics">Athletics</option>
+            <option value="Badminton">Badminton</option>
+          </select>
+
+          <label for="academicYear">Academic Year</label>
+          <input id="academicYear" type="number"
+                 min="2000" max="2100" required placeholder="e.g. 2026">
+
+          <label for="participantCategory">Category</label>
+          <select id="participantCategory">
+            <option value="">Select category</option>
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+          </select>
+
+          <label for="achievement">Achievement</label>
+          <input id="achievement" type="text"
+                 placeholder="e.g. South Zone Participant">
+
+          <button type="submit">Save Participant</button>
+        </form>
+      </section>
+
+<section class="card">
+  <h2>🏆 Winning Message</h2>
+  <p>Update the message displayed on the Achievements page.</p>
+
+  <form id="winningMessageForm">
+    <label for="winningMessage">Message</label>
+    <textarea
+      id="winningMessage"
+      rows="5"
+      required
+      maxlength="1000"
+      placeholder="Enter your winning message here..."
+    ></textarea>
+
+    <button type="submit">Save Winning Message</button>
+  </form>
+</section>
+<!-- STUDENT REGISTRATIONS -->
+<section class="card" style="grid-column: 1 / -1;">
+    <h2>📝 Student Trial Registrations</h2>
+
+    <p>
+        View student registrations and approve students
+        for sports trials.
+    </p>
+
+    <div id="registrationSummary">
+        Loading registration details...
+    </div>
+
+    <div id="registrationList">
+        Registrations will appear here.
+    </div>
+
+    <button type="button" id="refreshRegistrationsBtn">
+        Refresh Registrations
+    </button>
+</section>
+    </div>
+
+    <div id="status" role="status" aria-live="polite">
+      Connecting to BECVerse...
+    </div>
+
+    <div class="notice">
+      <strong>📌 Admin Note</strong>
+      <p>Use this dashboard to add tournament, team and South Zone participant details.</p>
+    </div>
+  </main>
+
+  <footer>© 2026 BECVerse · Bapatla Engineering College</footer>
+
+  <script type="module">
+    import { createClient } from
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    const SUPABASE_URL =
+      "https://suznvkevthyvcoccsvtd.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_ZkIBlHBagVHqiHysYdeejg_mQih6cob";
+
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const status = document.getElementById("status");
+    
+const winningMessageForm =
+  document.getElementById("winningMessageForm");
+
+const winningMessageInput =
+  document.getElementById("winningMessage");
+
+async function loadWinningMessage() {
+  const { data, error } = await supabase
+    .from("achievement_message")
+    .select("message")
+    .eq("id", 1)
+    .maybeSingle();
+
+  if (error) {
+    status.textContent =
+      "Could not load winning message: " + error.message;
+    return;
+  }
+
+  if (data) {
+    winningMessageInput.value = data.message;
+  }
+}
+
+if (winningMessageForm) {
+  winningMessageForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = winningMessageInput.value.trim();
+
+    if (!message) {
+      status.textContent = "Please enter a winning message.";
+      return;
+    }
+
+    status.textContent = "Saving winning message...";
+
+    const { error } = await supabase
+      .from("achievement_message")
+      .upsert(
+        {
+          id: 1,
+          message: message,
+          updated_at: new Date().toISOString()
+        },
+        { onConflict: "id" }
+      );
+
+    if (error) {
+      status.textContent =
+        "Could not save message: " + error.message;
+      return;
+    }
+
+    status.textContent =
+      "Winning message updated successfully!";
+  });
+}
+
+
+    // OPEN AND CLOSE TEAM FORM
+    const teamFormPanel = document.getElementById("teamFormPanel");
+
+    document.getElementById("manageTeamsBtn")
+      .addEventListener("click", () => {
+        teamFormPanel.hidden = false;
+        teamFormPanel.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      });
+
+    document.getElementById("closeTeamForm")
+      .addEventListener("click", () => {
+        teamFormPanel.hidden = true;
+      });
+
+    // CHECK ADMIN LOGIN
+    async function checkAdmin() {
+      status.textContent = "Checking admin access...";
+
+      const {
+        data: { user },
+        error
+      } = await supabase.auth.getUser();
+
+      if (error || !user) {
+        window.location.replace("admin login.html");
+        return;
+      }
+
+      const { data: admin, error: adminError } = await supabase
+        .from("admin_users")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (adminError || !admin) {
+        await supabase.auth.signOut();
+        window.location.replace("admin login.html");
+        return;
+      }
+
+      status.textContent = "Admin verified. Welcome to BECVerse!";
+await loadTournaments();
+await loadRegistrations();
+await loadWinningMessage();
+
+const winningMessageForm =
+  document.getElementById("winningMessageForm");
+
+const winningMessageInput =
+  document.getElementById("winningMessage");
+
+async function loadWinningMessage() {
+  const { data, error } = await supabase
+    .from("achievement_message")
+    .select("message")
+    .eq("id", 1)
+    .maybeSingle();
+
+  if (error) {
+    status.textContent =
+      "Could not load winning message: " + error.message;
+    return;
+  }
+
+  if (data) {
+    winningMessageInput.value = data.message;
+  }
+}
+
+winningMessageForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const message = winningMessageInput.value.trim();
+
+  if (!message) {
+    status.textContent = "Please enter a winning message.";
+    return;
+  }
+
+  status.textContent = "Saving winning message...";
+
+  const { error } = await supabase
+    .from("achievement_message")
+    .upsert(
+      {
+        id: 1,
+        message: message,
+        updated_at: new Date().toISOString()
+      },
+      { onConflict: "id" }
+    );
+
+  if (error) {
+    status.textContent =
+      "Could not save message: " + error.message;
+    return;
+  }
+
+  status.textContent = "Winning message updated successfully!";
+});
+
+    }
+    
+
+    // SAVE TOURNAMENT
+    const tournamentForm =
+      document.getElementById("tournamentForm");
+
+    tournamentForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      status.textContent = "Saving tournament...";
+
+      const name =
+        document.getElementById("tournamentName").value.trim();
+
+      const sport =
+        document.getElementById("sport").value.trim();
+
+      const start_date =
+        document.getElementById("startDate").value || null;
+
+      const end_date =
+        document.getElementById("endDate").value || null;
+
+      const venue =
+        document.getElementById("venue").value.trim() || null;
+
+      if (start_date && end_date && end_date < start_date) {
+        status.textContent =
+          "End date must be on or after start date.";
+        return;
+      }
+
+      const { error } = await supabase
+        .from("tournaments")
+        .insert([{ name, sport, start_date, end_date, venue }]);
+
+      if (error) {
+        status.textContent =
+          "Could not save tournament: " + error.message;
+        return;
+      }
+
+      status.textContent = "Tournament saved successfully!";
+      tournamentForm.reset();
+      await loadTournaments();
+    });
+
+    // SAVE TEAM TO SUPABASE
+    const teamForm = document.getElementById("teamForm");
+
+    teamForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      status.textContent = "Saving team...";
+
+      const sport =
+        document.getElementById("teamSport").value;
+
+      const team_name =
+        document.getElementById("teamName").value.trim();
+
+      const category =
+        document.getElementById("teamCategory").value;
+
+      const captain_name =
+        document.getElementById("captainName").value.trim() || null;
+
+      const players =
+        document.getElementById("teamPlayers").value.trim();
+
+      const { error } = await supabase
+        .from("teams")
+        .insert([{
+          sport,
+          team_name,
+          category,
+          captain_name,
+          players
+        }]);
+
+      if (error) {
+        status.textContent =
+          "Could not save team: " + error.message;
+        return;
+      }
+
+      status.textContent = "Team saved successfully!";
+      teamForm.reset();
+    });
+
+    // SAVE SOUTH ZONE PARTICIPANT
+    const participantForm =
+      document.getElementById("participantForm");
+
+    participantForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      status.textContent = "Saving participant...";
+
+      const participant_name =
+        document.getElementById("participantName").value.trim();
+
+      const sport =
+        document.getElementById("participantSport").value;
+
+      const academic_year =
+        document.getElementById("academicYear").value;
+
+      const category =
+        document.getElementById("participantCategory").value || null;
+
+      const achievement =
+        document.getElementById("achievement").value.trim() || null;
+
+      const { error } = await supabase
+        .from("south_zone_participants")
+        .insert([{
+          participant_name,
+          sport,
+          academic_year,
+          category,
+          achievement
+        }]);
+
+      if (error) {
+        status.textContent =
+          "Could not save participant: " + error.message;
+        return;
+      }
+
+      status.textContent = "Participant saved successfully!";
+      participantForm.reset();
+    });
+
+    // LOAD TOURNAMENTS
+    async function loadTournaments() {
+      const list = document.getElementById("tournamentList");
+
+      list.textContent = "Loading tournaments...";
+
+      const { data, error } = await supabase
+        .from("tournaments")
+        .select("*")
+        .order("start_date", { ascending: true });
+
+      if (error) {
+        list.textContent =
+          "Could not load tournaments: " + error.message;
+        return;
+      }
+
+      list.replaceChildren();
+
+      if (!data || data.length === 0) {
+        list.textContent = "No tournaments added yet.";
+        return;
+      }
+
+      data.forEach((tournament) => {
+        const card = document.createElement("div");
+
+        card.style.cssText =
+          "background:#f8fafc;padding:12px;margin:12px 0;" +
+          "border-radius:10px;border:1px solid #cbd5e1;";
+
+        const title = document.createElement("h3");
+        title.textContent = tournament.name;
+
+        const details = document.createElement("p");
+        details.textContent =
+          "Sport: " + tournament.sport +
+          " | Dates: " + (tournament.start_date || "Not set") +
+          " – " + (tournament.end_date || "Not set") +
+          " | Venue: " + (tournament.venue || "Not set");
+
+        card.append(title, details);
+        list.appendChild(card);
+      });
+    }
+// LOAD STUDENT REGISTRATIONS
+async function loadRegistrations() {
+    const summary = document.getElementById("registrationSummary");
+    const list = document.getElementById("registrationList");
+
+    summary.textContent = "Loading registrations...";
+    list.replaceChildren();
+
+    const { data, error } = await supabase
+        .from("trial_registrations")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        summary.textContent = "Could not load registrations.";
+        list.textContent = error.message;
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        summary.textContent = "Total registrations: 0";
+        list.textContent = "No student registrations yet.";
+        return;
+    }
+
+    const pendingCount = data.filter(r => r.status === "Pending").length;
+    const approvedCount = data.filter(r => r.status === "Approved").length;
+
+    summary.textContent =
+        "Total: " + data.length +
+        " | Pending: " + pendingCount +
+        " | Approved: " + approvedCount;
+
+    data.forEach(reg => {
+        const card = document.createElement("div");
+
+        card.style.cssText =
+            "background:#f8fafc;padding:16px;margin:14px 0;" +
+            "border:1px solid #cbd5e1;border-radius:10px;";
+
+        const name = document.createElement("h3");
+        name.textContent = reg.full_name;
+
+        const details = document.createElement("p");
+        details.style.cssText =
+            "line-height:1.8;color:#334155;overflow-wrap:anywhere;";
+
+        details.textContent =
+            "Registration Number: " + reg.registration_number +
+            " | Branch: " + reg.branch +
+            " | Year: " + reg.academic_year +
+            " | Sport: " + reg.sport_name +
+            " | Contact: " + reg.contact_number;
+
+        const statusLabel = document.createElement("p");
+        statusLabel.style.fontWeight = "bold";
+        statusLabel.textContent = "Status: " + reg.status;
+        statusLabel.style.color =
+            reg.status === "Approved" ? "#15803d" : "#b45309";
+
+        card.append(name, details, statusLabel);
+
+        if (reg.status === "Pending") {
+            const approveButton = document.createElement("button");
+            approveButton.textContent = "Approve for Trials";
+
+            approveButton.addEventListener("click", async () => {
+                approveButton.disabled = true;
+                approveButton.textContent = "Approving...";
+
+                const { error } = await supabase
+                    .from("trial_registrations")
+                    .update({ status: "Approved" })
+                    .eq("id", reg.id);
+
+                if (error) {
+                    status.textContent =
+                        "Could not approve registration: " + error.message;
+                    approveButton.disabled = false;
+                    approveButton.textContent = "Approve for Trials";
+                    return;
+                }
+
+                status.textContent =
+                    reg.full_name + " approved for sports trials!";
+
+                await loadRegistrations();
+            });
+
+            card.appendChild(approveButton);
+        }
+
+        list.appendChild(card);
+    });
+}
+
+// REFRESH REGISTRATIONS
+document
+    .getElementById("refreshRegistrationsBtn")
+    .addEventListener("click", loadRegistrations);
+    checkAdmin();
+  </script>
+</body>
+</html>
