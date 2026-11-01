@@ -157,13 +157,13 @@
 
         <form id="loginForm">
 
-            <label for="username">Username</label>
-            <input
-                type="text"
-                id="username"
-                placeholder="Enter admin username"
-                required
-            >
+            <label for="email">Admin Email</label>
+<input
+    type="email"
+    id="email"
+    placeholder="Enter admin email"
+    required
+>
 
             <label for="password">Password</label>
             <input
@@ -191,16 +191,60 @@
 
     </div>
 
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+   
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-            document.getElementById("message").textContent =
-                "Login authentication is not connected yet. This is a demo page.";
+const SUPABASE_URL = "https://suznvkevthyvcoccsvtd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZkIBlHBagVHqiHysYdeejg_mQih6cob";
 
-            document.getElementById("message").style.color = "#b45309";
-        });
-    </script>
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const form = document.getElementById("loginForm");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  message.style.color = "#b45309";
+  message.textContent = "Signing in...";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    message.style.color = "#dc2626";
+    message.textContent = "Login failed. Check your email and password.";
+    return;
+  }
+
+  const { data: admin, error: adminError } = await supabase
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id", data.user.id)
+    .maybeSingle();
+
+  if (adminError || !admin) {
+    await supabase.auth.signOut();
+    message.style.color = "#dc2626";
+    message.textContent = "This account does not have admin access.";
+    return;
+  }
+
+  message.style.color = "#15803d";
+  message.textContent = "Login successful!";
+
+  window.location.href = "admin-dashboard.html";
+});
+</script>
 
 </body>
 </html>
