@@ -1,482 +1,342 @@
-<!DOCTYPE html><html lang="en">
+ 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Zone | BECVerse</title><style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <title>South Zone | BECVerse</title>
 
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f7fb;
-        color: #1e293b;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    header {
-        background: #102a43;
-        color: white;
-        padding: 20px 7%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6fb;
+            color: #142d46;
+        }
 
-    header h1 {
-        color: #42e8e0;
-        font-size: 28px;
-    }
-
-    header p {
-        font-size: 12px;
-        margin-top: 5px;
-    }
-
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    nav a:hover {
-        color: #42e8e0;
-    }
-
-    .hero {
-        background: linear-gradient(135deg, #102a43, #087e9b);
-        color: white;
-        text-align: center;
-        padding: 55px 20px;
-    }
-
-    .hero h2 {
-        font-size: 38px;
-        margin-bottom: 15px;
-    }
-
-    .hero p {
-        line-height: 1.7;
-    }
-
-    .container {
-        max-width: 1100px;
-        margin: 35px auto;
-        padding: 0 20px;
-    }
-
-    .section-title {
-        text-align: center;
-        margin-bottom: 25px;
-    }
-
-    .section-title h2 {
-        font-size: 28px;
-        color: #102a43;
-        margin-bottom: 8px;
-    }
-
-    .filters {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 25px;
-    }
-
-    input, select {
-        padding: 12px;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        font-size: 15px;
-        background: white;
-    }
-
-    input {
-        flex: 1;
-        min-width: 200px;
-    }
-
-    select {
-        min-width: 160px;
-    }
-
-    .table-wrapper {
-        overflow-x: auto;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 5px 18px #102a4310;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        min-width: 650px;
-    }
-
-    th, td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #e2e8f0;
-    }
-
-    th {
-        background: #102a43;
-        color: white;
-    }
-
-    tr:hover {
-        background: #ecfeff;
-    }
-
-    .badge {
-        background: #cffafe;
-        color: #155e75;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .award-section {
-        margin-top: 50px;
-    }
-
-    .award-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-    }
-
-    .award-card {
-        background: white;
-        padding: 28px 20px;
-        text-align: center;
-        border-radius: 14px;
-        border: 1px solid #dbeafe;
-        box-shadow: 0 5px 18px #102a4310;
-    }
-
-    .award-icon {
-        font-size: 42px;
-        margin-bottom: 12px;
-    }
-
-    .award-card h3 {
-        color: #087e9b;
-        margin-bottom: 10px;
-    }
-
-    .award-card p {
-        line-height: 1.7;
-        color: #64748b;
-    }
-
-    .note {
-        background: #e0f2fe;
-        color: #075985;
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 20px;
-        line-height: 1.6;
-    }
-
-    footer {
-        background: #102a43;
-        color: white;
-        text-align: center;
-        padding: 22px;
-        margin-top: 50px;
-    }
-
-    @media (max-width: 600px) {
         header {
-            flex-direction: column;
-            align-items: flex-start;
+            background: #102b45;
+            color: white;
+            padding: 18px 5%;
         }
 
-        .hero h2 {
-            font-size: 29px;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-    }
-</style>
 
-</head><body><header>
-    <div>
-        <h1>BECVerse</h1>
-        <p>Where Passion Meets Victory.</p>
+        .brand {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #7ee8f2;
+        }
+
+        .hero {
+            background: #173d5c;
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: 34px;
+        }
+
+        .hero p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        main {
+            width: 92%;
+            max-width: 1250px;
+            margin: 35px auto 50px;
+        }
+
+        .schedule-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(20, 45, 70, 0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #102b45;
+        }
+
+        .description {
+            color: #586b7e;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .message {
+            padding: 13px;
+            background: #eef5fb;
+            color: #36536e;
+            border-radius: 7px;
+            margin-bottom: 15px;
+        }
+
+        .error {
+            background: #fff0f0;
+            color: #9a2525;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e0e7ef;
+        }
+
+        th {
+            background: #102b45;
+            color: white;
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #f0f8fc;
+        }
+
+        footer {
+            background: #102b45;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .schedule-section {
+                padding: 16px;
+            }
+
+            th,
+            td {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="brand">BECVerse</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tournaments.html">Tournaments</a>
+            <a href="teams.html">Our Teams</a>
+            <a href="southzone.html">South Zone</a>
+            <a href="achievements.html">Achievements</a>
+        </nav>
     </div>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="tournaments.html">Tournaments</a>
-        <a href="teams.html">Our Teams</a>
-        <a href="southzone.html">South Zone</a>
-        <a href="achievements.html">Achievements</a>
-    </nav>
 </header>
 
 <section class="hero">
-    <h2>South Zone Athletes</h2>
-    <p>Celebrating the dedication and achievements of BEC athletes.</p>
-    <p>Explore participation records and honour our sporting champions.</p>
+    <h1>South Zone Tournament Schedule</h1>
+    <p>
+        Stay updated with inter-university tournament dates,
+        sports and venues.
+    </p>
 </section>
 
-<main class="container">
+<main>
+    <section class="schedule-section">
+        <h2>South Zone Tournaments 2026–27</h2>
 
-    <section>
-        <div class="section-title">
-            <h2>South Zone Participation Records</h2>
-            <p>Search athlete records by name, sport or year.</p>
-        </div>
+        <p class="description">
+            View the tournament schedule for different sports
+            and participating universities.
+        </p>
 
-        <div class="filters">
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search name, branch or registration number..."
-                oninput="filterPlayers()"
-            >
-
-            <select id="sportFilter" onchange="filterPlayers()">
-                <option value="">All Sports</option>
-                <option value="Volleyball">Volleyball</option>
-                <option value="Handball">Handball</option>
-                <option value="Athletics">Athletics</option>
-                <option value="Badminton">Badminton</option>
-            </select>
-
-            <select id="yearFilter" onchange="filterPlayers()">
-                <option value="">All Years</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-            </select>
+        <div id="scheduleMessage" class="message" role="status">
+            Loading tournament schedule...
         </div>
 
         <div class="table-wrapper">
             <table>
                 <thead>
-    <tr>
-        <th>Player Name</th>
-        <th>Sport</th>
-        <th>Participation Year</th>
-        <th>Category</th>
-        <th>Achievement</th>
-    </tr>
-</thead>
+                    <tr>
+                        <th>Zone</th>
+                        <th>Sport Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
 
-                ><tbody id="playerTable">
-    <tr>
-        <td colspan="5" style="text-align:center; padding:20px;">
-            Loading South Zone participants...
-        </td>
-    </tr>
-</tbody>
+                <tbody id="southZoneTournamentTable">
+                    <tr>
+                        <td colspan="5">Loading tournaments...</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
-
-        <p id="noResults" style="display:none; text-align:center; padding:20px;">
-            No matching players found.
-        </p>
-
-        <div class="note">
-            <strong>Note:</strong> These are sample records for demonstration only.
-            Actual player information will be added after approval from the BEC Sports Department.
-        </div>
     </section>
-
 </main>
 
 <footer>
-    <p>BECVerse | Where Passion Meets Victory.</p>
-    <p>Official Sports Portal of Bapatla Engineering College</p>
+    <div>BECVerse | Where Passion Meets Victory.</div>
+    <div>Official Sports Portal of Bapatla Engineering College</div>
 </footer>
 
+<!-- Supabase connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
 <script>
-    const SUPABASE_URL = "https://suznvkevthyvcoccsvtd.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_ZkIBlHBagVHqiHysYdeejg_mQih6cob";
+    async function loadSouthZoneTournaments() {
+        const tableBody =
+            document.getElementById("southZoneTournamentTable");
 
-    async function loadPlayers() {
-        const table = document.getElementById("playerTable");
-
-        table.innerHTML = `
-            <tr>
-                <td colspan="5" style="text-align:center;">
-                    Loading participants...
-                </td>
-            </tr>
-        `;
+        const message =
+            document.getElementById("scheduleMessage");
 
         try {
-            const response = await fetch(
-                `${SUPABASE_URL}/rest/v1/south_zone_participants?select=*&order=academic_year.desc`,
-                {
-                    headers: {
-                        "apikey": SUPABASE_KEY,
-                        "Authorization": `Bearer ${SUPABASE_KEY}`
-                    }
-                }
-            );
+            const { data, error } = await supabaseClient
+                .from("south_zone_tournaments")
+                .select("*")
+                .order("start_date", { ascending: true });
 
-            if (!response.ok) {
-                throw new Error("Could not load participants. Check Supabase settings.");
+            if (error) {
+                throw error;
             }
 
-            const players = await response.json();
+            tableBody.innerHTML = "";
 
-            table.innerHTML = "";
+            if (!data || data.length === 0) {
+                message.textContent = "No tournaments available.";
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5">No tournament records found.</td>
+                    </tr>
+                `;
+                return;
+            }
 
-            players.forEach(function(player) {
+            data.forEach(function(tournament) {
                 const row = document.createElement("tr");
 
-                row.dataset.sport = player.sport || "";
-                row.dataset.year = player.academic_year || "";
+                const zone = document.createElement("td");
+                zone.textContent = tournament.zone || "South Zone";
 
-                const values = [
-                    player.participant_name,
-                    player.sport,
-                    player.academic_year,
-                    player.category,
-                    player.achievement
-                ];
+                const sport = document.createElement("td");
+                sport.textContent =
+                    tournament.sport ||
+                    tournament.tournament_name ||
+                    "—";
 
-                values.forEach(function(value, index) {
-                    const cell = document.createElement("td");
+                const startDate = document.createElement("td");
+                startDate.textContent =
+                    formatDate(tournament.start_date);
 
-                    if (index === 1) {
-                        const badge = document.createElement("span");
-                        badge.className = "badge";
-                        badge.textContent = value || "-";
-                        cell.appendChild(badge);
-                    } else {
-                        cell.textContent = value || "-";
-                    }
+                const endDate = document.createElement("td");
+                endDate.textContent =
+                    formatDate(tournament.end_date);
 
-                    row.appendChild(cell);
-                });
+                const venue = document.createElement("td");
+                venue.textContent = tournament.venue || "—";
 
-                table.appendChild(row);
+                row.append(
+                    zone,
+                    sport,
+                    startDate,
+                    endDate,
+                    venue
+                );
+
+                tableBody.appendChild(row);
             });
 
-            filterPlayers();
+            message.textContent =
+                "Showing " + data.length + " tournament records.";
 
         } catch (error) {
-            table.innerHTML = `
+            console.error("South Zone schedule error:", error);
+
+            message.textContent =
+                "Unable to load tournaments. Check the Supabase connection and table permissions.";
+
+            message.classList.add("error");
+
+            tableBody.innerHTML = `
                 <tr>
-                    <td colspan="5" style="text-align:center;">
-                        Unable to load participants. Please try again.
+                    <td colspan="5">
+                        Unable to load tournament records.
                     </td>
                 </tr>
             `;
-            console.error(error);
         }
     }
 
-    function filterPlayers() {
-        const searchText = document
-            .getElementById("searchInput")
-            .value.toLowerCase();
-
-        const selectedSport = document
-            .getElementById("sportFilter")
-            .value.toLowerCase();
-
-        const selectedYear = document
-            .getElementById("yearFilter")
-            .value;
-
-        const rows = document.querySelectorAll("#playerTable tr");
-        let visibleCount = 0;
-
-        rows.forEach(function(row) {
-            const rowText = row.innerText.toLowerCase();
-            const sport = (row.dataset.sport || "").toLowerCase();
-            const year = row.dataset.year || "";
-
-            const matchesSearch = rowText.includes(searchText);
-            const matchesSport =
-                selectedSport === "" || sport === selectedSport;
-            const matchesYear =
-                selectedYear === "" || year === selectedYear;
-
-            const matches = matchesSearch && matchesSport && matchesYear;
-
-            row.style.display = matches ? "" : "none";
-
-            if (matches) visibleCount++;
-        });
-
-        document.getElementById("noResults").style.display =
-            visibleCount === 0 ? "block" : "none";
-    }
-
-    loadPlayers();
-    async function loadSouthZoneTournaments() {
-    const list = document.getElementById("southZoneList");
-
-    if (!list) return;
-
-    list.textContent = "Loading tournaments...";
-
-    try {
-        const { data, error } = await supabase
-            .from("south_zone_tournaments")
-            .select("*")
-            .order("start_date", { ascending: true });
-
-        if (error) throw error;
-
-        list.innerHTML = "";
-
-        if (!data || data.length === 0) {
-            list.textContent = "No tournaments available.";
-            return;
+    function formatDate(value) {
+        if (!value) {
+            return "—";
         }
 
-        data.forEach(function(tournament) {
-            const card = document.createElement("div");
-            card.className = "south-zone-card";
+        const match = String(value).match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
 
-            const title = document.createElement("h3");
-            title.textContent = tournament.tournament_name;
+        if (match) {
+            return `${match[3]}-${match[2]}-${match[1]}`;
+        }
 
-            const dates = document.createElement("p");
-            dates.textContent =
-                tournament.start_date + " to " +
-                (tournament.end_date || tournament.start_date);
-
-            const venue = document.createElement("p");
-            venue.textContent = "📍 " + tournament.venue;
-
-            card.append(title, dates, venue);
-            list.appendChild(card);
-        });
-
-    } catch (error) {
-        console.error(error);
-        list.textContent = "Unable to load tournaments.";
+        return value;
     }
-}
 
-loadSouthZoneTournaments();
+    loadSouthZoneTournaments();
 </script>
-<!-- SOUTH ZONE TOURNAMENTS SECTION -->
- <section class="south-zone-tournaments">
-    <h2>South Zone Tournaments 2026–27</h2>
-    <p>Upcoming Inter-University Tournaments</p>
 
-    <div id="southZoneList">
-        Loading tournaments...
-    </div>
-</section>
 </body>
 </html>
