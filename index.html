@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="manifest" href="manifest.json">
 <title>BECVerse | Different Teams, Same Dream</title>
 
 <style>
@@ -975,6 +975,7 @@ footer p {
     }
 }
 </style>
+
 </head>
 <!-- GRAND WELCOME SCREEN -->
 
@@ -1329,3 +1330,15 @@ footer p {
     </div>
 
 </section>
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => console.log("BECVerse is ready!"))
+            .catch((error) => console.error("Service Worker error:", error));
+    });
+}
+</script>
+
+</body>
+</html>
